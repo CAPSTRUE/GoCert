@@ -1,0 +1,2255 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>GoCert Quiz</title>
+  <style>
+    body { font-family: system-ui, Arial, sans-serif; margin: 0; background:#f6f7f9; }
+    .wrap { max-width: 980px; margin: 24px auto; padding: 16px; }
+    .card { background:#fff; border-radius: 12px; padding: 16px; box-shadow: 0 6px 20px rgba(0,0,0,.06); }
+    h1 { font-size: 18px; margin: 0 0 12px; }
+    h2 { font-size: 16px; margin: 0 0 10px; }
+    img { width: 100%; height: auto; border-radius: 10px; border: 1px solid #eee; }
+
+    .opts { display: grid; gap: 10px; margin-top: 14px; }
+    button.opt{
+      text-align:left; padding: 12px 14px; border-radius: 10px;
+      border: 1px solid #ddd; background:#fff; cursor:pointer; font-size:16px;
+    
+      white-space: pre-line;
+}
+    button.opt:hover{ background:#fafafa; }
+    button.opt.selected{ border-color:#111827; box-shadow: 0 0 0 2px rgba(17,24,39,.08); }
+
+    .msg { margin-top: 12px; padding: 10px 12px; border-radius: 10px; white-space: pre-line; }
+    .ok { background: #e9f7ee; border: 1px solid #bfe7cc; }
+    .bad { background: #fdecec; border: 1px solid #f4b9b9; }
+    .warn { background: #fff3cd; border: 1px solid #ffeeba; }
+
+    .actions { margin-top: 12px; display:flex; gap: 10px; flex-wrap: wrap; align-items:center; }
+    .primary{
+      padding: 10px 12px; border-radius: 10px; border: 0;
+      background: #111827; color: white; cursor: pointer;
+    }
+    .secondary{
+      padding: 10px 12px; border-radius: 10px; border: 1px solid #ddd;
+      background: white; cursor: pointer;
+    }
+    button:disabled{ opacity:.5; cursor:not-allowed; }
+    .hidden{ display:none; }
+    .row { display:flex; gap: 16px; flex-wrap: wrap; }
+    .panel { flex: 1 1 320px; }
+
+    label { display:flex; gap: 10px; align-items: center; margin: 10px 0; }
+    .fieldRow { display:flex; gap: 10px; align-items: center; margin: 10px 0; }
+    .small { color:#6b7280; font-size: 13px; margin-top: 8px; }
+    input:disabled, select:disabled { cursor: not-allowed; }
+
+    .timerbar{
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 10px 12px; border: 1px solid #eee; border-radius: 10px; margin-bottom: 10px;
+      background:#fafafa;
+    }
+    .timerleft{ display:flex; gap:10px; align-items:center; }
+    .pill{
+      background:#fff; display:inline-block; padding: 4px 10px; border-radius: 999px;
+      border: 1px solid #e5e7eb; font-size: 13px;
+    }
+    .timerbar strong{ font-variant-numeric: tabular-nums; }
+
+    input[type="number"], input[type="text"], select{
+      width: 220px; padding: 8px 10px; border-radius: 10px; border: 1px solid #ddd;
+      background: white;
+    }
+
+    ul { margin: 8px 0 0; padding-left: 18px; }
+    .score { font-size: 28px; font-weight: 700; margin: 6px 0 4px; }
+    .muted { color:#6b7280; }
+
+    /* Splash */
+    .splash {
+      position: fixed; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      background: #0b0f19;
+      z-index: 9999;
+      padding: 18px;
+    }
+    .splashBox{
+      width: min(860px, 100%);
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.10);
+      border-radius: 18px;
+      padding: 22px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+      text-align: center;
+      color: #fff;
+    }
+    .logoWrap{ display:flex; align-items:center; justify-content:center; padding: 10px; }
+    .logoImg{ max-width: 720px; width: 100%; height: auto; border: 0; border-radius: 0; background: transparent; }
+    .splashHint{ margin-top: 10px; color: rgba(255,255,255,0.8); font-size: 14px; }
+    .splashActions{ margin-top: 16px; display:flex; justify-content:center; }
+
+    @keyframes logoIntro {
+      0%   { transform: scale(1.35); opacity: 0.95; }
+      12%  { transform: scale(1.18); }
+      22%  { transform: scale(1.26); }
+      36%  { transform: scale(1.02); }
+      48%  { transform: scale(1.12); }
+      62%  { transform: scale(0.88); }
+      76%  { transform: scale(0.74); }
+      88%  { transform: scale(0.82); }
+      100% { transform: scale(0.62); opacity: 1; }
+    }
+    .logoIntroAnim{
+      animation: logoIntro 4s ease-in-out forwards;
+      transform-origin: center;
+      will-change: transform;
+    }
+
+    /* ====== Dropdown de prova (Microsoft/Oracle) ====== */
+    .examDD { position: relative; width: 220px; }
+    .examDD__btn{
+      width: 100%;
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 8px 10px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background: #fff;
+      cursor:pointer;
+      font-size: 14px;
+    }
+    .examDD__menu{
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      width: 220px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.12);
+      padding: 6px;
+      z-index: 999;
+      display: none;
+    }
+    .examDD.open .examDD__menu{ display:block; }
+
+    .examDD__group{
+      position: relative;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      padding: 10px 10px;
+      border-radius: 10px;
+      cursor: default;
+      user-select: none;
+      font-size: 14px;
+    }
+    .examDD__group:hover{ background:#f9fafb; }
+
+    .examDD__arrow{ color:#6b7280; }
+
+    .examDD__submenu{
+      position: absolute;
+      top: 0;
+      left: calc(100% + 6px);
+      width: 220px;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.12);
+      padding: 6px;
+      display: none;
+      z-index: 1000;
+    }
+    .examDD__group:hover .examDD__submenu{ display:block; }
+    .examDD__group.active .examDD__submenu{ display:block; } /* suporte ao mobile/click */
+
+    .examDD__item{
+      width: 100%;
+      text-align: left;
+      padding: 10px 10px;
+      border-radius: 10px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .examDD__item:hover{ background:#f3f4f6; }
+
+    
+    /* Tipos de questão (menu) */
+    #typeDD { width: 220px; }
+    #typeDDMenu { width: 220px; }
+    #typeDDMenu label.examDD__group{ margin: 0; }
+
+.hiddenSelect{
+      position: absolute !important;
+      left: -9999px !important;
+      width: 1px !important;
+      height: 1px !important;
+      opacity: 0 !important;
+      pointer-events: none !important;
+    }
+
+/* Questões com dropdowns (matriz/ordenação) */
+.ddqWrap { margin-top: 12px; display: grid; gap: 10px; }
+.ddqHelp { font-size: 13px; color:#6b7280; }
+.ddqTable {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  overflow: hidden;
+  background: #fff;
+}
+.ddqTable th, .ddqTable td {
+  border-bottom: 1px solid #f0f0f0;
+  padding: 10px;
+  text-align: left;
+  vertical-align: middle;
+}
+.ddqTable tr:last-child td { border-bottom: 0; }
+.ddqTable th { background:#fafafa; font-size: 14px; }
+.ddqRowHead { font-weight: 600; min-width: 220px; }
+.ddqTable select { width: 100%; min-width: 220px; max-width: 100%; }
+.ddqRadioGroup {
+  display:flex;
+  align-items:center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.ddqRadioOpt {
+  display:inline-flex;
+  align-items:center;
+  gap: 6px;
+  cursor:pointer;
+  user-select:none;
+  white-space: nowrap;
+  font-size: 14px;
+}
+.ddqRadioOpt input[type="radio"] {
+  margin: 0;
+  width: 14px;
+  height: 14px;
+  cursor:pointer;
+}
+.ddqCell--binary {
+  width: 180px;
+  white-space: nowrap;
+}
+.ddqTable--yesno th:first-child,
+.ddqTable--yesno .ddqRowHead {
+  width: auto;
+  min-width: 460px;
+}
+.ddqTable--yesno .ddqYNCol,
+.ddqTable--yesno .ddqYNCell {
+  width: 72px;
+  text-align: center;
+}
+.ddqTable--yesno .ddqYNCell {
+  vertical-align: middle;
+}
+.ddqRadioOnly {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width: 100%;
+  cursor:pointer;
+}
+.ddqRadioOnly input[type="radio"] {
+  margin:0;
+  width:16px;
+  height:16px;
+  cursor:pointer;
+}
+    /* Navegação de questões */
+    .qTitle{ display:flex; flex-wrap:wrap; gap: 8px; align-items: baseline; }
+    #qJump{
+      width: auto; min-width: 84px;
+      padding: 4px 10px;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      background: #fff;
+      font-size: 14px;
+    }
+    .qPrompt{ flex: 0 0 100%; margin-top: 6px; font-weight: 400; 
+      white-space: pre-line;
+}
+
+  /* Questões de encaixe (drag & drop) */
+.dragWrap{ margin-top: 12px; display:grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+@media (max-width: 720px){ .dragWrap{ grid-template-columns: 1fr; } }
+.dragCol{ background:#fff; border:1px solid #e5e7eb; border-radius: 12px; padding: 12px; }
+.dragTitle{ font-weight: 700; margin-bottom: 8px; }
+.dragHint{ color:#6b7280; font-size: 13px; margin-bottom: 10px; }
+.dragItems{ display:grid; gap: 8px; }
+.dragItem{
+  border:1px solid #ddd; background:#fff; border-radius: 10px;
+  padding: 10px 12px; cursor: grab; user-select:none;
+  box-shadow: 0 1px 0 rgba(0,0,0,.02);
+}
+.dragItem:active{ cursor: grabbing; }
+.dragItem.selected{ outline: 2px solid rgba(17,24,39,.18); border-color:#111827; }
+.dragItem.disabled{ opacity:.45; cursor:not-allowed; }
+.dragTargets{ display:grid; gap: 10px; }
+.dragTargetRow{ display:grid; gap: 6px; }
+.dragTargetLabel{ font-weight: 600; }
+.dropZone{
+  border: 2px dashed #d1d5db; border-radius: 12px; padding: 10px 12px;
+  min-height: 42px; display:flex; align-items:center; justify-content:space-between; gap: 10px;
+  background:#fafafa;
+}
+.dropZone.filled{ border-style: solid; background:#fff; }
+.dropZone .dzText{ flex: 1 1 auto; }
+.dropZone .dzClear{
+  border: 1px solid #ddd; background:#fff; border-radius: 10px; padding: 6px 10px; cursor:pointer;
+}
+.dropZone.over{ border-color:#111827; }
+  
+    /* Questões de dropdown inline (texto com lacunas) */
+    .inlineWrap{ margin-top: 12px; background:#fff; border:1px solid #e5e7eb; border-radius: 12px; padding: 14px; }
+    .inlineLine{ line-height: 1.8; font-size: 16px; }
+    .inlineLine + .inlineLine{ margin-top: 10px; }
+    .inlineSel{
+      display:inline-block;
+      min-width: 180px;
+      margin: 0 6px;
+      padding: 6px 8px;
+      border-radius: 10px;
+      border: 1px solid #d1d5db;
+      background: #fff;
+      font-size: 15px;
+      vertical-align: middle;
+    }
+
+</style>
+</head>
+
+<body>
+  <!-- SPLASH -->
+  <div class="splash" id="splashScreen">
+    <div class="splashBox">
+      <div class="logoWrap">
+        <img class="logoImg logoIntroAnim" id="logoImg" src="logo.png" alt="GoCert" />
+      </div>
+      <div class="splashHint">Carregando...</div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <!-- MENU -->
+    <div class="card hidden" id="menuCard">
+      <h1>Configurações da Prova</h1>
+
+      <div class="row">
+        <div class="panel">
+          <h2>Opções</h2>
+
+          <label>
+            Prova:
+
+            <div class="examDD" id="examDD">
+              <button class="examDD__btn" type="button" id="examDDButton" aria-haspopup="true" aria-expanded="false">
+                <span id="examDDLabel">MS-700</span>
+                <span aria-hidden="true">▾</span>
+              </button>
+
+              <div class="examDD__menu" id="examDDMenu">
+                <div class="examDD__group" data-group="Microsoft">
+                  <span>Microsoft</span>
+                  <span class="examDD__arrow">▶</span>
+
+                  <div class="examDD__submenu">
+                    <button type="button" class="examDD__item" data-exam="AZ-104">AZ-104</button>
+                    <button type="button" class="examDD__item" data-exam="AZ-500">AZ-500</button>
+                    <button type="button" class="examDD__item" data-exam="SC-300">SC-300</button>
+                    <button type="button" class="examDD__item" data-exam="SC-200">SC-200</button>
+                    <button type="button" class="examDD__item" data-exam="MS-700">MS-700</button>
+                    <button type="button" class="examDD__item" data-exam="MS-200">MS-200</button>
+                  </div>
+                </div>
+
+                <div class="examDD__group" data-group="Oracle">
+                  <span>Oracle</span>
+                  <span class="examDD__arrow">▶</span>
+
+                  <div class="examDD__submenu">
+                    <button type="button" class="examDD__item" data-exam="OCI App Integration">OCI App Integration</button>
+                    <button type="button" class="examDD__item" data-exam="OCI Architect">OCI Architect</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <select id="optExamName" class="hiddenSelect" tabindex="-1" aria-hidden="true">
+              <option value="AZ-104" selected>AZ-104</option>
+              <option value="AZ-500">AZ-500</option>
+              <option value="SC-300">SC-300</option>
+              <option value="SC-200">SC-200</option>
+              <option value="MS-700">MS-700</option>
+              <option value="MS-200">MS-200</option>
+              <option value="OCI App Integration">OCI App Integration</option>
+              <option value="OCI Architect">OCI Architect</option>
+            </select>
+          </label>
+
+          
+          <div class="fieldRow">
+            Tipos de questão:
+            <div class="examDD" id="typeDD">
+              <button type="button" class="examDD__btn" id="typeDDBtn" aria-haspopup="true" aria-expanded="false">
+                <span id="typeDDLabel">Todas</span>
+                <span aria-hidden="true">▾</span>
+              </button>
+              <div class="examDD__menu" id="typeDDMenu">
+                <label class="examDD__group" style="cursor:pointer;">
+                  <input type="checkbox" id="optTypeMcq" checked style="margin-right:10px" /> Alternativas
+                </label>
+                <label class="examDD__group" style="cursor:pointer;">
+                  <input type="checkbox" id="optTypeMatrix" checked style="margin-right:10px" /> Dropdown
+                </label>
+                <label class="examDD__group" style="cursor:pointer;">
+                  <input type="checkbox" id="optTypeInline" checked style="margin-right:10px" /> Texto
+                </label>
+                <label class="examDD__group" style="cursor:pointer;">
+                  <input type="checkbox" id="optTypeDrag" checked style="margin-right:10px" /> Arrastar
+                </label>
+                <label class="examDD__group" style="cursor:pointer;">
+                  <input type="checkbox" id="optTypeUnsupported" checked style="margin-right:10px" /> Incompatível
+                </label>
+              </div>
+            </div>
+          </div>
+          <div class="fieldRow">
+            Intervalo de Questões:
+            <input type="text" id="optQuestionRange" placeholder="Ex: 1-50" />
+          </div>
+          <div class="small" style="margin-top:-6px;">Ex.: 1-50 ou 3-75</div>
+
+
+<label>
+            % mínima para aprovação:
+            <select id="optPassPct">
+              <option value="50">50%</option>
+              <option value="60">60%</option>
+              <option value="70" selected>70%</option>
+              <option value="80">80%</option>
+              <option value="90">90%</option>
+              <option value="100">100%</option>
+            </select>
+          </label>
+
+          <label>
+            <input type="checkbox" id="optShuffleQuestions" checked />
+            Randomizar ordem das questões
+          </label>
+
+          <label>
+            <input type="checkbox" id="optShuffleAnswers" />
+            Randomizar alternativas
+          </label>
+
+          <label>
+            <input type="checkbox" id="optShowFeedback" checked />
+            Mostrar feedback (certo/errado)
+          </label>
+
+          <label>
+            <input type="checkbox" id="optShowCorrectOnWrong" checked />
+            Mostrar resposta correta quando errar
+          </label>
+
+<label>
+            <input type="checkbox" id="optEnableTimer" />
+            Ativar timer
+          </label>
+
+          <label style="margin-top:6px">
+            Tempo (minutos):
+            <input type="number" id="optTimerMinutes" min="1" max="999" value="60" />
+          </label>
+                    <div class="small" id="examInfo"></div>
+          <div id="menuMsg" class="msg hidden"></div>
+        </div>
+      </div>
+
+      <div class="actions" style="margin-top:16px">
+        <button class="primary" id="startBtn">Iniciar</button>
+      </div>
+    </div>
+
+    <!-- QUIZ -->
+    <div class="card hidden" id="quizCard">
+      <div class="timerbar hidden" id="timerBar">
+        <div class="timerleft">
+          <span class="pill" id="examPill">Prova</span>
+          <span class="pill">Tempo restante</span>
+        </div>
+        <strong id="timerText">00:00</strong>
+      </div>
+
+      <h1 id="title" class="qTitle">
+        <span id="qTitleExam"></span>
+        <span aria-hidden="true">—</span>
+        <span>Pergunta</span>
+        <select id="qJump" aria-label="Ir para pergunta"></select>
+        <span id="qTitleOf"></span>
+        <span aria-hidden="true">:</span>
+        <span id="qPrompt" class="qPrompt"></span>
+      </h1>
+      
+      <img id="qimg" alt="Imagem da pergunta" class="hidden" />
+      <img id="qimg2" alt="Imagem da pergunta (2)" class="hidden" />
+      <img id="qimg3" alt="Imagem da pergunta (3)" class="hidden" />
+      <img id="qimg4" alt="Imagem da pergunta (4)" class="hidden" />
+      <img id="qimg5" alt="Imagem da pergunta (5)" class="hidden" />
+      <div class="opts" id="opts"></div>
+
+      <div id="msg" class="msg hidden"></div>
+
+      <div class="actions">
+        <button id="prevBtn" class="secondary">Anterior</button>
+        <button id="nextBtn" class="primary">Próxima</button>
+        <button id="finishBtn" class="secondary">Finalizar exame</button>
+        <button id="restartBtn" class="secondary">Voltar ao menu</button>
+      </div>
+    </div>
+
+    <!-- RESULTADO -->
+    <div class="card hidden" id="resultCard">
+      <h1 id="resultTitle">Resultado</h1>
+
+      <div class="score" id="scorePct">0%</div>
+      <div class="muted" id="scoreDetail"></div>
+
+      <div id="passFailMsg" class="msg" style="margin-top:12px"></div>
+
+      <div id="wrongListWrap" class="hidden" style="margin-top:12px">
+        <h2>Questões erradas (resposta final)</h2>
+        <ul id="wrongList"></ul>
+      </div>
+
+      <div class="actions" style="margin-top:16px">
+        <button class="primary hidden" id="continueBtn">Continuar de onde parou</button>
+        <button class="primary hidden" id="retryWrongBtn">Refazer erradas</button>
+        <button class="secondary" id="retryAllBtn">Refazer todas</button>
+        <button class="secondary" id="backToMenuBtn">Menu</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener("DOMContentLoaded", () => {
+      function escapeHtml(s) {
+        return String(s ?? "").replace(/[&<>"']/g, (c) => ({
+          "&": "&amp;",
+          "<": "&lt;",
+          ">": "&gt;",
+          '"': "&quot;",
+          "'": "&#39;"
+        }[c]));
+      }
+
+      
+      function stripAnswerChoicesFromPrompt(prompt) {
+        const lines = String(prompt ?? "").split(/\r?\n/);
+        const kept = [];
+        for (const ln of lines) {
+          const t = String(ln ?? "").trim();
+          // Remove A./B./C./D./E. lines from the prompt (choices should appear only as alternatives)
+          if (/^[A-E]\.[\s\u00A0]+/.test(t)) continue;
+          kept.push(ln);
+        }
+        // collapse excessive blank lines
+        return kept.join("\n").replace(/\n[ \t]*\n+/g, "\n").trimEnd();
+      }
+
+      function getPromptForDisplay(q) {
+        let p = String(q?.prompt ?? "").replace(/\r/g, "");
+
+        // Convert literal "\n" sequences (common when importing from JSON/JS) into real line breaks
+        p = p.replace(/\\n/g, "\n");
+        p = p.replace(/\\r/g, "");
+
+        // Normalize bullets/tasks to match PDF layout
+        p = p.replace(/—\s*Task\s*(\d+)\s+/gi, "— Task $1\n");
+        p = p.replace(/([:.;])\s*\*\s+/g, "$1\n* ");
+        p = p.replace(/\n\s*\*\s+/g, "\n* ");
+
+        // Remove common PDF artifacts (page numbers / watermarks) if present in prompt
+        p = p.replace(/^\s*\d{1,3}\s*$/gm, "");
+        p = p.replace(/^\s*IT Certification Guaranteed.*$/gmi, "");
+        p = p.replace(/^\s*The Easy Way!\s*$/gmi, "");
+
+        // Collapse blank lines (PDF page breaks often appear as empty lines)
+        p = p.replace(/\n[ \t]*\n+/g, "\n");
+
+        // For regular multiple-choice questions, remove A./B./C./D./E. lines from the prompt
+        if (!isDropdownQuestion(q) && Array.isArray(q?.answers) && q.answers.length > 0) {
+          p = stripAnswerChoicesFromPrompt(p);
+        }
+
+        return p.trimEnd();
+      }
+
+function formatPromptHtml(prompt) {
+        const raw = String(prompt ?? "");
+        let out = escapeHtml(raw);
+
+        // Bold only the question number token (e.g., NO.130)
+        const m = out.match(/^(NO\.\d+)/);
+        if (m) out = `<b>${m[1]}</b>${out.slice(m[1].length)}`;
+
+        // Preserve PDF-like line breaks
+        out = out.replace(/\n/g, "<br>");
+        return out;
+      }
+
+      const questionBank = {
+        "AZ-104": null,
+        "AZ-500": null,
+        "SC-300": null,
+        "SC-200": null,
+        "MS-700": null,
+        "MS-200": null,
+        "OCI App Integration": null,
+        "OCI Architect": null
+      };
+
+            // ====== Carregamento sob demanda por prova (arquivo "<PROVA>.js") ======
+            window.__QUESTION_BANK_FILES__ = window.__QUESTION_BANK_FILES__ || {};
+            const __examLoaded = Object.create(null);
+            const __examLoading = Object.create(null);
+
+            function ensureExamLoaded(exam) {
+              if (__examLoaded[exam]) return Promise.resolve();
+              if (__examLoading[exam]) return __examLoading[exam];
+
+              const src = encodeURI(`${exam}.js`);
+              __examLoading[exam] = new Promise((resolve, reject) => {
+                const s = document.createElement("script");
+                s.src = src;
+                s.async = true;
+                s.onload = () => {
+                  const payload = window.__QUESTION_BANK_FILES__ && window.__QUESTION_BANK_FILES__[exam];
+                  if (!Array.isArray(payload)) {
+                    reject(new Error(`Arquivo ${src} carregou, mas não registrou dados (window.__QUESTION_BANK_FILES__[${exam}]).`));
+                    return;
+                  }
+                  questionBank[exam] = payload;
+                  __examLoaded[exam] = true;
+                  resolve();
+                };
+                s.onerror = () => reject(new Error(`Falha ao carregar ${src}. Verifique se o arquivo está na mesma pasta do index.`));
+                document.head.appendChild(s);
+              });
+              return __examLoading[exam];
+            }
+
+
+      function indexToOptionKey(index) {
+        let n = Number(index) + 1;
+        let out = "";
+        while (n > 0) {
+          n -= 1;
+          out = String.fromCharCode(65 + (n % 26)) + out;
+          n = Math.floor(n / 26);
+        }
+        return out;
+      }
+
+      function buildOptionKeys(count) {
+        const total = Math.max(0, Number(count) || 0);
+        return Array.from({ length: total }, (_, i) => indexToOptionKey(i));
+      }
+
+      const splashScreen = document.getElementById("splashScreen");
+      const logoImg = document.getElementById("logoImg");
+
+      const menuCard = document.getElementById("menuCard");
+      const quizCard = document.getElementById("quizCard");
+      const resultCard = document.getElementById("resultCard");
+
+      const optExamName = document.getElementById("optExamName");
+      const optPassPct = document.getElementById("optPassPct");
+      const optShuffleQuestions = document.getElementById("optShuffleQuestions");
+      const optShuffleAnswers = document.getElementById("optShuffleAnswers");
+      const optShowFeedback = document.getElementById("optShowFeedback");
+      const optShowCorrectOnWrong = document.getElementById("optShowCorrectOnWrong");
+      const optEnableTimer = document.getElementById("optEnableTimer");
+      const optTimerMinutes = document.getElementById("optTimerMinutes");
+
+      const optTypeMcq = document.getElementById("optTypeMcq");
+      const optTypeMatrix = document.getElementById("optTypeMatrix");
+      const optTypeInline = document.getElementById("optTypeInline");
+      const optTypeDrag = document.getElementById("optTypeDrag");
+      const optTypeUnsupported = document.getElementById("optTypeUnsupported");
+      const optQuestionRange = document.getElementById("optQuestionRange");
+
+      const startBtn = document.getElementById("startBtn");
+
+      const examInfo = document.getElementById("examInfo");
+      const menuMsg = document.getElementById("menuMsg");
+
+      const timerBar = document.getElementById("timerBar");
+      const timerText = document.getElementById("timerText");
+      const examPill = document.getElementById("examPill");
+
+      const titleEl = document.getElementById("title");
+      const qTitleExamEl = document.getElementById("qTitleExam");
+      const qJumpSel = document.getElementById("qJump");
+      const qTitleOfEl = document.getElementById("qTitleOf");
+      const qPromptEl = document.getElementById("qPrompt");
+      const imgEl = document.getElementById("qimg");
+      const imgEl2 = document.getElementById("qimg2");
+      const imgEl3 = document.getElementById("qimg3");
+      const imgEl4 = document.getElementById("qimg4");
+      const imgEl5 = document.getElementById("qimg5");
+      const optsEl = document.getElementById("opts");
+      const msgEl = document.getElementById("msg");
+
+      const prevBtn = document.getElementById("prevBtn");
+      const nextBtn = document.getElementById("nextBtn");
+      const finishBtn = document.getElementById("finishBtn");
+      const restartBtn = document.getElementById("restartBtn");
+
+      const resultTitleEl = document.getElementById("resultTitle");
+      const scorePctEl = document.getElementById("scorePct");
+      const scoreDetailEl = document.getElementById("scoreDetail");
+      const passFailMsgEl = document.getElementById("passFailMsg");
+      const wrongListWrap = document.getElementById("wrongListWrap");
+      const wrongListEl = document.getElementById("wrongList");
+
+      const continueBtn = document.getElementById("continueBtn");
+      const retryWrongBtn = document.getElementById("retryWrongBtn");
+      const retryAllBtn = document.getElementById("retryAllBtn");
+      const backToMenuBtn = document.getElementById("backToMenuBtn");
+
+      // Dropdown custom prova
+      const examDD = document.getElementById("examDD");
+      const examDDButton = document.getElementById("examDDButton");
+      const examDDLabel = document.getElementById("examDDLabel");
+      const examDDMenu = document.getElementById("examDDMenu");
+      const examDDGroups = examDDMenu.querySelectorAll(".examDD__group");
+      const examDDItems = examDDMenu.querySelectorAll(".examDD__item");
+
+      function openExamDD(){ examDD.classList.add("open"); examDDButton.setAttribute("aria-expanded", "true"); }
+      function closeExamDD(){
+        examDD.classList.remove("open");
+        examDDButton.setAttribute("aria-expanded", "false");
+        examDDGroups.forEach(g => g.classList.remove("active"));
+      }
+      function toggleExamDD(){ examDD.classList.contains("open") ? closeExamDD() : openExamDD(); }
+      function setExam(exam){
+        optExamName.value = exam;
+        examDDLabel.textContent = exam;
+        optExamName.dispatchEvent(new Event("change"));
+        closeExamDD();
+      }
+
+      examDDButton.addEventListener("click", (e) => { e.stopPropagation(); toggleExamDD(); });
+      examDDGroups.forEach(g => {
+        g.addEventListener("click", (e) => {
+          e.stopPropagation();
+          examDDGroups.forEach(x => x.classList.remove("active"));
+          g.classList.add("active");
+        });
+      });
+      examDDItems.forEach(btn => {
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          const exam = btn.getAttribute("data-exam");
+          setExam(exam);
+        });
+      });
+      document.addEventListener("click", () => closeExamDD());
+      document.addEventListener("keydown", (e) => { if (e.key === "Escape") closeExamDD(); });
+
+      let runSettings = {
+        examName: "AZ-104",
+        passThreshold: 70,
+        shuffleQuestions: true,
+        shuffleAnswers: false,
+        showFeedback: true,
+        showCorrectOnWrong: true,
+        timerEnabled: false,
+        timerSeconds: 0
+      };
+
+      let questionsRun = [];
+      let idx = 0;
+      const userAnswers = new Map();
+
+      let timerInterval = null;
+      let timerDeadlineMs = 0;
+      let timedOut = false;
+      const UNSUPPORTED_PLACEHOLDER_REGEX = /questão em formato não suportado por este app/i;
+      let imageRenderToken = 0;
+
+      function shuffle(arr) {
+        const a = arr.slice();
+        for (let i = a.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [a[i], a[j]] = [a[j], a[i]];
+        }
+        return a;
+      }
+      function show(el){ el.classList.remove("hidden"); }
+      function hide(el){ el.classList.add("hidden"); }
+
+      function setMsg(el, text, kind) {
+        el.textContent = text;
+        el.classList.remove("hidden", "ok", "bad", "warn");
+        el.classList.add(kind);
+      }
+      function clearMsg(el){
+        el.textContent = "";
+        el.classList.add("hidden");
+        el.classList.remove("ok", "bad", "warn");
+      }
+
+      function updateDependencies() {
+        if (!optShowFeedback.checked) {
+          optShowCorrectOnWrong.checked = false;
+          optShowCorrectOnWrong.disabled = true;
+        } else {
+          optShowCorrectOnWrong.disabled = false;
+        }
+        optTimerMinutes.disabled = !optEnableTimer.checked;
+      }
+
+      function refreshQuestionJumpOptions() {
+        if (!qJumpSel) return;
+        const prev = String(idx);
+
+        qJumpSel.innerHTML = "";
+        questionsRun.forEach((qRun, i) => {
+          const opt = document.createElement("option");
+          const ans = userAnswers.get(qRun.id);
+          const answered = isQuestionAnswered(qRun, ans);
+          opt.value = String(i);
+          opt.textContent = `${i + 1}${answered ? " ✓" : ""}`;
+          qJumpSel.appendChild(opt);
+        });
+
+        qJumpSel.disabled = questionsRun.length === 0;
+        if (questionsRun.length > 0) qJumpSel.value = prev;
+      }
+
+      function jumpToQuestionFromSelect() {
+        if (timedOut) return;
+        const v = parseInt(qJumpSel.value, 10);
+        if (!Number.isFinite(v)) return;
+        if (v < 0 || v >= questionsRun.length) return;
+        idx = v;
+        render();
+      }
+
+      function gotoMenu(){ stopTimer(); hide(quizCard); hide(resultCard); show(menuCard); }
+      function gotoQuiz(){ hide(menuCard); hide(resultCard); show(quizCard); }
+      function gotoResult(){ stopTimer(); hide(menuCard); hide(quizCard); show(resultCard); }
+
+      function enterApp(){ splashScreen.style.display = "none"; gotoMenu(); }
+      setTimeout(enterApp, 4000);
+
+      const LOGO_CANDIDATES = ["logo.png", "logo.png.png"];
+      let logoTry = 0;
+      logoImg.src = LOGO_CANDIDATES[logoTry];
+      logoImg.onerror = () => {
+        logoTry++;
+        if (logoTry < LOGO_CANDIDATES.length) { logoImg.src = LOGO_CANDIDATES[logoTry]; return; }
+        logoImg.remove();
+        const t = document.createElement("div");
+        t.style.fontSize = "42px";
+        t.style.fontWeight = "800";
+        t.style.letterSpacing = "0.5px";
+        t.textContent = "GoCert";
+        document.querySelector(".logoWrap").appendChild(t);
+      };
+
+      function formatMMSS(seconds) {
+        const s = Math.max(0, Math.floor(seconds));
+        const mm = String(Math.floor(s / 60)).padStart(2, "0");
+        const ss = String(s % 60).padStart(2, "0");
+        return `${mm}:${ss}`;
+      }
+
+      function startTimerIfEnabled() {
+        timedOut = false;
+        if (!runSettings.timerEnabled) { hide(timerBar); return; }
+        show(timerBar);
+        timerDeadlineMs = Date.now() + runSettings.timerSeconds * 1000;
+        tickTimer();
+        timerInterval = setInterval(tickTimer, 250);
+      }
+
+      function stopTimer() {
+        if (timerInterval) { clearInterval(timerInterval); timerInterval = null; }
+      }
+
+      function tickTimer() {
+        const remainingSec = Math.ceil((timerDeadlineMs - Date.now()) / 1000);
+        timerText.textContent = formatMMSS(remainingSec);
+        if (remainingSec <= 0) {
+          timedOut = true;
+          stopTimer();
+          showResults(true);
+        }
+      }
+
+      function isMulti(qRun) {
+        return Array.isArray(qRun.correctValuesFixed) && qRun.correctValuesFixed.length > 1;
+      }
+
+      function evaluateIsCorrect(qRun, chosenKeys) {
+        const chosenValues = chosenKeys.map(k => qRun.mappingFixed[k]);
+        const correctValues = qRun.correctValuesFixed;
+
+        if (chosenValues.length !== correctValues.length) return false;
+
+        const a = new Set(chosenValues);
+        const b = new Set(correctValues);
+
+        if (a.size !== b.size) return false;
+        for (const v of a) if (!b.has(v)) return false;
+        return true;
+      }
+
+
+function isDropdownQuestion(qRun) {
+  return !!qRun && qRun.type === "dropdownMatrix";
+}
+
+
+
+
+
+
+function isInlineDropdownQuestion(qRun) {
+  return !!qRun && qRun.type === "inlineDropdown";
+}
+
+function cloneInlineValues(v) {
+  const out = {};
+  if (!v || typeof v !== "object") return out;
+  Object.keys(v).forEach(k => { out[k] = v[k]; });
+  return out;
+}
+
+function getInlineRequiredCount(qRun) {
+  if (!isInlineDropdownQuestion(qRun)) return 0;
+  return Object.keys(qRun.inline?.slots || {}).length;
+}
+
+function getFilledInlineCount(qRun, inlineValues) {
+  if (!isInlineDropdownQuestion(qRun)) return 0;
+  let c = 0;
+  const slots = qRun.inline?.slots || {};
+  Object.keys(slots).forEach(k => {
+    const v = inlineValues?.[k];
+    if (typeof v === "string" && v.trim() !== "") c++;
+  });
+  return c;
+}
+
+function evaluateInlineIsCorrect(qRun, inlineValues) {
+  if (!isInlineDropdownQuestion(qRun)) return false;
+  const slots = qRun.inline?.slots || {};
+  for (const k of Object.keys(slots)) {
+    const expected = slots[k]?.correct;
+    const actual = inlineValues?.[k] || "";
+    if (!expected || actual !== expected) return false;
+  }
+  return true;
+}
+
+// Classificação (para filtro no menu)
+function classifyQuestionTypeRaw(q) {
+  if (!q) return "mcq";
+  if (q.type === "dragMatch") return "drag";
+  if (q.type === "inlineDropdown") return "inline";
+  if (q.type === "dropdownMatrix") return "matrix";
+
+  // Incompatível: placeholder único
+  const answers = Array.isArray(q.answers) ? q.answers : [];
+  const ca = q.correctAnswer;
+  if (
+    answers.length === 1 &&
+    typeof answers[0] === "string" &&
+    typeof ca === "string" &&
+    UNSUPPORTED_PLACEHOLDER_REGEX.test(answers[0].trim()) &&
+    UNSUPPORTED_PLACEHOLDER_REGEX.test(ca.trim())
+  ) return "unsupported";
+
+  return "mcq";
+}
+
+function isDragMatchQuestion(qRun) {
+  return !!qRun && qRun.type === "dragMatch";
+}
+
+function cloneDragValues(v) {
+  const out = {};
+  if (!v || typeof v !== "object") return out;
+  Object.keys(v).forEach(tid => { out[tid] = v[tid]; });
+  return out;
+}
+
+function getDragRequiredCount(qRun) {
+  if (!isDragMatchQuestion(qRun)) return 0;
+  return (qRun.targets || []).length || 0;
+}
+
+function getFilledDragCount(qRun, dragValues) {
+  if (!isDragMatchQuestion(qRun)) return 0;
+  let c = 0;
+  (qRun.targets || []).forEach(t => {
+    const v = dragValues?.[t.id];
+    if (typeof v === "string" && v.trim() !== "") c++;
+  });
+  return c;
+}
+
+function evaluateDragIsCorrect(qRun, dragValues) {
+  if (!isDragMatchQuestion(qRun)) return false;
+  for (const t of (qRun.targets || [])) {
+    const expected = qRun.correctByTarget?.[t.id];
+    const actual = dragValues?.[t.id] || "";
+    if (!expected || actual !== expected) return false;
+  }
+  return true;
+}
+
+function getDragItemLabel(qRun, itemId) {
+  const it = (qRun.items || []).find(x => x.id === itemId);
+  return it ? it.label : "";
+}
+function cloneDropdownValues(v) {
+  const out = {};
+  if (!v || typeof v !== "object") return out;
+  Object.keys(v).forEach(rowId => {
+    out[rowId] = { ...(v[rowId] || {}) };
+  });
+  return out;
+}
+
+function getDropdownRequiredCellCount(qRun) {
+  if (!isDropdownQuestion(qRun)) return 0;
+  return (qRun.rows?.length || 0) * (qRun.columns?.length || 0);
+}
+
+function getFilledDropdownCellCount(qRun, dropdownValues) {
+  if (!isDropdownQuestion(qRun)) return 0;
+  let count = 0;
+  (qRun.rows || []).forEach(row => {
+    (qRun.columns || []).forEach(col => {
+      const v = dropdownValues?.[row.id]?.[col.id];
+      if (typeof v === "string" && v.trim() !== "") count++;
+    });
+  });
+  return count;
+}
+
+function evaluateDropdownIsCorrect(qRun, dropdownValues) {
+  if (!isDropdownQuestion(qRun)) return false;
+  for (const row of (qRun.rows || [])) {
+    for (const col of (qRun.columns || [])) {
+      const expected = col.correctByRow?.[row.id];
+      const actual = dropdownValues?.[row.id]?.[col.id] || "";
+      if (!expected || actual !== expected) return false;
+    }
+  }
+  return true;
+}
+
+function isQuestionAnswered(qRun, ans) {
+  if (!qRun || !ans) return false;
+
+  if (isDragMatchQuestion(qRun)) {
+    const required = getDragRequiredCount(qRun);
+    const filled = getFilledDragCount(qRun, ans.dragValues);
+    return required > 0 && filled === required;
+  }
+
+  if (isInlineDropdownQuestion(qRun)) {
+    const required = getInlineRequiredCount(qRun);
+    const filled = getFilledInlineCount(qRun, ans.inlineValues);
+    return required > 0 && filled === required;
+  }
+
+  if (isDropdownQuestion(qRun)) {
+    const required = getDropdownRequiredCellCount(qRun);
+    const filled = getFilledDropdownCellCount(qRun, ans.dropdownValues);
+    return required > 0 && filled === required;
+  }
+
+  return !!(ans.chosenKeys && ans.chosenKeys.length > 0);
+}
+
+function isUnsupportedPlaceholderText(v) {
+  return typeof v === "string" && UNSUPPORTED_PLACEHOLDER_REGEX.test(v.trim());
+}
+
+function isUnsupportedPlaceholderQuestion(qRun) {
+  if (!qRun || isDropdownQuestion(qRun) || isDragMatchQuestion(qRun) || isInlineDropdownQuestion(qRun)) return false;
+
+  const answers = Array.isArray(qRun.answers)
+    ? qRun.answers
+    : Object.values(qRun.mappingFixed || {});
+
+  const correctValues = Array.isArray(qRun.correctValuesFixed)
+    ? qRun.correctValuesFixed
+    : (Array.isArray(qRun.correctAnswer) ? qRun.correctAnswer : [qRun.correctAnswer]);
+
+  return (
+    answers.length === 1 &&
+    correctValues.length === 1 &&
+    isUnsupportedPlaceholderText(answers[0]) &&
+    isUnsupportedPlaceholderText(correctValues[0])
+  );
+}
+
+function getCorrectAnswerLines(qRun) {
+  if (isDragMatchQuestion(qRun)) {
+    const lines = [];
+    (qRun.targets || []).forEach(t => {
+      const itemId = qRun.correctByTarget?.[t.id] || "";
+      const label = getDragItemLabel(qRun, itemId);
+      lines.push(`${t.label}: ${label || "-"}`);
+    });
+    return lines;
+  }
+
+  if (isInlineDropdownQuestion(qRun)) {
+    const lines = [];
+    const slots = qRun.inline?.slots || {};
+    Object.keys(slots).forEach(k => {
+      const expected = slots[k]?.correct || "-";
+      const lbl = slots[k]?.label || k;
+      lines.push(`${lbl}: ${expected}`);
+    });
+    return lines;
+  }
+
+  if (isDropdownQuestion(qRun)) {
+    const lines = [];
+    (qRun.rows || []).forEach(row => {
+      const parts = (qRun.columns || []).map(col => `${col.label}: ${col.correctByRow?.[row.id] || "-"}`);
+      lines.push(`${row.label}: ${parts.join(" | ")}`);
+    });
+    return lines;
+  }
+
+  return (qRun.correctKeysFixed || []).map(k => `${k}. ${qRun.mappingFixed[k]}`);
+}
+
+function isYesNoOptions(options) {
+  const vals = (options || []).map(v => String(v || "").trim().toLowerCase());
+  return vals.length === 2 && vals.includes("yes") && vals.includes("no");
+}
+
+function shouldRenderRadioForColumn(qRun, col) {
+  if (!col) return false;
+  if (col.inputType === "radio") return true;
+  if (col.inputType === "select") return false;
+
+  const isSingleColumn = (qRun.columns || []).length === 1;
+  return isSingleColumn && isYesNoOptions(col.options || []);
+}
+
+function isBinaryYesNoSingleColumnQuestion(qRun) {
+  if (!isDropdownQuestion(qRun)) return false;
+  if ((qRun.columns || []).length !== 1) return false;
+  const col = qRun.columns[0];
+  return shouldRenderRadioForColumn(qRun, col) && isYesNoOptions(col.options || []);
+}
+
+function renderDropdownQuestion(qRun, savedDropdownValues) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "ddqWrap";
+
+  const isYesNoMatrix = isBinaryYesNoSingleColumnQuestion(qRun);
+  const yesNoCol = isYesNoMatrix ? (qRun.columns || [])[0] : null;
+
+  const help = document.createElement("div");
+  help.className = "ddqHelp";
+  help.textContent = isYesNoMatrix ? "Marque Yes ou No em cada item." : "Selecione uma opção em cada campo.";
+  wrapper.appendChild(help);
+
+  const table = document.createElement("table");
+  table.className = "ddqTable" + (isYesNoMatrix ? " ddqTable--yesno" : "");
+
+  const thead = document.createElement("thead");
+  const htr = document.createElement("tr");
+  const thRow = document.createElement("th");
+  thRow.textContent = "Item";
+  htr.appendChild(thRow);
+
+  if (isYesNoMatrix) {
+    ["Yes", "No"].forEach(lbl => {
+      const th = document.createElement("th");
+      th.className = "ddqYNCol";
+      th.textContent = lbl;
+      htr.appendChild(th);
+    });
+  } else {
+    (qRun.columns || []).forEach(col => {
+      const th = document.createElement("th");
+      th.textContent = col.label;
+      htr.appendChild(th);
+    });
+  }
+
+  thead.appendChild(htr);
+  table.appendChild(thead);
+
+  const tbody = document.createElement("tbody");
+  (qRun.rows || []).forEach(row => {
+    const tr = document.createElement("tr");
+
+    const tdLabel = document.createElement("td");
+    tdLabel.className = "ddqRowHead";
+    tdLabel.textContent = row.label;
+    tr.appendChild(tdLabel);
+
+    if (isYesNoMatrix) {
+      const currentValue = savedDropdownValues?.[row.id]?.[yesNoCol.id] || "";
+      ["Yes", "No"].forEach(optVal => {
+        const td = document.createElement("td");
+        td.className = "ddqYNCell";
+
+        const label = document.createElement("label");
+        label.className = "ddqRadioOnly";
+        label.title = optVal;
+
+        const radio = document.createElement("input");
+        radio.type = "radio";
+        radio.name = `ddq-${qRun.id}-${row.id}-${yesNoCol.id}`;
+        radio.value = optVal;
+        radio.checked = currentValue === optVal;
+        radio.setAttribute("aria-label", `${row.label} - ${optVal}`);
+        radio.addEventListener("change", (e) => {
+          if (e.target.checked) onDropdownChange(row.id, yesNoCol.id, optVal);
+        });
+
+        label.appendChild(radio);
+        td.appendChild(label);
+        tr.appendChild(td);
+      });
+    } else {
+      (qRun.columns || []).forEach(col => {
+        const td = document.createElement("td");
+        const currentValue = savedDropdownValues?.[row.id]?.[col.id] || "";
+        const rowOptions = Array.isArray(col.optionsByRow?.[row.id])
+          ? col.optionsByRow[row.id]
+          : (Array.isArray(row.options) ? row.options : (col.options || []));
+
+        if (shouldRenderRadioForColumn(qRun, col)) {
+          td.classList.add("ddqCell--binary");
+
+          const radioWrap = document.createElement("div");
+          radioWrap.className = "ddqRadioGroup";
+
+          (rowOptions || []).forEach(optVal => {
+            const label = document.createElement("label");
+            label.className = "ddqRadioOpt";
+
+            const radio = document.createElement("input");
+            radio.type = "radio";
+            radio.name = `ddq-${qRun.id}-${row.id}-${col.id}`;
+            radio.value = optVal;
+            radio.checked = currentValue === optVal;
+            radio.addEventListener("change", (e) => {
+              if (e.target.checked) onDropdownChange(row.id, col.id, optVal);
+            });
+
+            const text = document.createElement("span");
+            text.textContent = optVal;
+
+            label.appendChild(radio);
+            label.appendChild(text);
+            radioWrap.appendChild(label);
+          });
+
+          td.appendChild(radioWrap);
+        } else {
+          const sel = document.createElement("select");
+
+          const emptyOpt = document.createElement("option");
+          emptyOpt.value = "";
+          emptyOpt.textContent = "Selecione...";
+          sel.appendChild(emptyOpt);
+
+          (rowOptions || []).forEach(optVal => {
+            const opt = document.createElement("option");
+            opt.value = optVal;
+            opt.textContent = optVal;
+            sel.appendChild(opt);
+          });
+
+          sel.value = currentValue;
+          sel.addEventListener("change", (e) => onDropdownChange(row.id, col.id, e.target.value));
+
+          td.appendChild(sel);
+        }
+
+        tr.appendChild(td);
+      });
+    }
+
+    tbody.appendChild(tr);
+  });
+  table.appendChild(tbody);
+  wrapper.appendChild(table);
+  optsEl.appendChild(wrapper);
+}
+
+
+
+function renderInlineDropdownQuestion(qRun, savedInlineValues) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "inlineWrap";
+
+  const inlineValues = cloneInlineValues(savedInlineValues || {});
+  const parts = qRun.inline?.parts || [];
+  const slots = qRun.inline?.slots || {};
+
+  function commit() {
+    const required = getInlineRequiredCount(qRun);
+    const filled = getFilledInlineCount(qRun, inlineValues);
+    const fullyAnswered = required > 0 && filled === required;
+    const isCorrect = fullyAnswered ? evaluateInlineIsCorrect(qRun, inlineValues) : false;
+
+    userAnswers.set(qRun.id, { inlineValues: cloneInlineValues(inlineValues), isCorrect });
+    refreshQuestionJumpOptions();
+    updateFeedbackForCurrentQuestion();
+  }
+
+  function makeLine() {
+    const line = document.createElement("div");
+    line.className = "inlineLine";
+    wrapper.appendChild(line);
+    return line;
+  }
+
+  let line = makeLine();
+
+  parts.forEach(part => {
+    // Quebra de linha explícita
+    if (part && part.br) {
+      line = makeLine();
+      return;
+    }
+
+    // Texto (pode conter \n)
+    if (part && typeof part.text === "string") {
+      const chunks = String(part.text).split("\n");
+      chunks.forEach((t, idx) => {
+        if (idx > 0) line = makeLine();
+        if (t) {
+          const span = document.createElement("span");
+          span.textContent = t;
+          line.appendChild(span);
+        }
+      });
+      return;
+    }
+
+    // Slot (dropdown)
+    const slotKey = part?.slot;
+    if (slotKey && slots[slotKey]) {
+      const sel = document.createElement("select");
+      sel.className = "inlineSel";
+      sel.setAttribute("aria-label", slots[slotKey]?.label || slotKey);
+
+      const opt0 = document.createElement("option");
+      opt0.value = "";
+      opt0.textContent = "Selecione...";
+      sel.appendChild(opt0);
+
+      (slots[slotKey].options || []).forEach(v => {
+        const o = document.createElement("option");
+        o.value = v;
+        o.textContent = v;
+        sel.appendChild(o);
+      });
+
+      sel.value = inlineValues[slotKey] || "";
+
+      sel.addEventListener("change", () => {
+        if (timedOut) return;
+        inlineValues[slotKey] = sel.value || "";
+        commit();
+      });
+
+      line.appendChild(sel);
+      return;
+    }
+  });
+
+  optsEl.appendChild(wrapper);
+  commit();
+}
+
+function renderDragMatchQuestion(qRun, savedDragValues) {
+  const wrapper = document.createElement("div");
+  wrapper.className = "dragWrap";
+
+  let selectedItemId = "";
+  const dragValues = cloneDragValues(savedDragValues || {});
+
+  const leftCol = document.createElement("div");
+  leftCol.className = "dragCol";
+  const lt = document.createElement("div");
+  lt.className = "dragTitle";
+  lt.textContent = "Opções";
+  leftCol.appendChild(lt);
+
+  const lh = document.createElement("div");
+  lh.className = "dragHint";
+  lh.textContent = "Arraste um bloco para a direita, ou clique em uma opção e depois clique no encaixe.";
+  leftCol.appendChild(lh);
+
+  const itemsWrap = document.createElement("div");
+  itemsWrap.className = "dragItems";
+  leftCol.appendChild(itemsWrap);
+
+  const rightCol = document.createElement("div");
+  rightCol.className = "dragCol";
+  const rt = document.createElement("div");
+  rt.className = "dragTitle";
+  rt.textContent = "Answer area";
+  rightCol.appendChild(rt);
+
+  const rh = document.createElement("div");
+  rh.className = "dragHint";
+  rh.textContent = "Preencha todos os encaixes.";
+  rightCol.appendChild(rh);
+
+  const targetsWrap = document.createElement("div");
+  targetsWrap.className = "dragTargets";
+  rightCol.appendChild(targetsWrap);
+
+  function getAssignedItemIds() {
+    return new Set(Object.values(dragValues || {}).filter(Boolean));
+  }
+
+  function renderItems() {
+    itemsWrap.innerHTML = "";
+    const assigned = getAssignedItemIds();
+
+    (qRun.items || []).forEach(it => {
+      const div = document.createElement("div");
+      div.className = "dragItem" + (selectedItemId === it.id ? " selected" : "") + (assigned.has(it.id) ? " disabled" : "");
+      div.textContent = it.label;
+      div.draggable = !assigned.has(it.id);
+      div.dataset.itemId = it.id;
+
+      div.addEventListener("click", () => {
+        if (assigned.has(it.id)) return;
+        selectedItemId = (selectedItemId === it.id) ? "" : it.id;
+        renderItems();
+      });
+
+      div.addEventListener("dragstart", (e) => {
+        if (assigned.has(it.id)) { e.preventDefault(); return; }
+        e.dataTransfer.setData("text/plain", it.id);
+        e.dataTransfer.effectAllowed = "move";
+      });
+
+      itemsWrap.appendChild(div);
+    });
+  }
+
+  function clearTarget(targetId) {
+    if (!dragValues[targetId]) return;
+    delete dragValues[targetId];
+    onDragAssign(dragValues);
+  }
+
+  function assignToTarget(targetId, itemId) {
+    if (!itemId) return;
+    // remove item from any other target (one-to-one)
+    Object.keys(dragValues).forEach(tid => {
+      if (dragValues[tid] === itemId) delete dragValues[tid];
+    });
+    dragValues[targetId] = itemId;
+    selectedItemId = "";
+    onDragAssign(dragValues);
+  }
+
+  function renderTargets() {
+    targetsWrap.innerHTML = "";
+    (qRun.targets || []).forEach(t => {
+      const row = document.createElement("div");
+      row.className = "dragTargetRow";
+
+      const lab = document.createElement("div");
+      lab.className = "dragTargetLabel";
+      lab.textContent = t.label;
+      row.appendChild(lab);
+
+      const dz = document.createElement("div");
+      dz.className = "dropZone" + (dragValues[t.id] ? " filled" : "");
+      dz.dataset.targetId = t.id;
+
+      const txt = document.createElement("div");
+      txt.className = "dzText";
+      txt.textContent = dragValues[t.id] ? getDragItemLabel(qRun, dragValues[t.id]) : "Solte aqui / clique aqui";
+      dz.appendChild(txt);
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "dzClear";
+      btn.textContent = "Limpar";
+      btn.disabled = !dragValues[t.id];
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        clearTarget(t.id);
+      });
+      dz.appendChild(btn);
+
+      dz.addEventListener("click", () => {
+        if (!selectedItemId) return;
+        assignToTarget(t.id, selectedItemId);
+      });
+
+      dz.addEventListener("dragover", (e) => {
+        e.preventDefault();
+        dz.classList.add("over");
+      });
+      dz.addEventListener("dragleave", () => dz.classList.remove("over"));
+      dz.addEventListener("drop", (e) => {
+        e.preventDefault();
+        dz.classList.remove("over");
+        const itemId = e.dataTransfer.getData("text/plain");
+        assignToTarget(t.id, itemId);
+      });
+
+      row.appendChild(dz);
+      targetsWrap.appendChild(row);
+    });
+  }
+
+  function onDragAssign(newDragValues) {
+    if (timedOut) return;
+
+    const q = questionsRun[idx];
+    if (!isDragMatchQuestion(q)) return;
+
+    const dv = cloneDragValues(newDragValues || {});
+    const fullyAnswered = getFilledDragCount(q, dv) === getDragRequiredCount(q);
+    const isCorrect = fullyAnswered ? evaluateDragIsCorrect(q, dv) : false;
+
+    userAnswers.set(q.id, { dragValues: dv, isCorrect });
+
+    refreshQuestionJumpOptions();
+    renderItems();
+    renderTargets();
+    updateFeedbackForCurrentQuestion();
+  }
+
+  wrapper.appendChild(leftCol);
+  wrapper.appendChild(rightCol);
+  optsEl.appendChild(wrapper);
+
+  renderItems();
+  renderTargets();
+}
+
+
+function updateFeedbackForCurrentQuestion() {
+  const q = questionsRun[idx];
+  const saved = userAnswers.get(q.id);
+  const answered = isQuestionAnswered(q, saved);
+
+  // Permite avançar mesmo sem responder a questão atual (pular).
+  nextBtn.disabled = false;
+
+  if (!runSettings.showFeedback || !answered) {
+    clearMsg(msgEl);
+    return;
+  }
+
+  if (saved?.isCorrect) {
+    setMsg(msgEl, "✅ Correto.", "ok");
+    return;
+  }
+
+  let t = "❌ Errado.";
+  if (runSettings.showCorrectOnWrong) {
+    t += `\nRespostas corretas:\n${getCorrectAnswerLines(q).join("\n")}`;
+  }
+  setMsg(msgEl, t, "bad");
+}
+
+      function buildRun(sourceQuestions) {
+  let list = sourceQuestions.slice();
+  if (runSettings.shuffleQuestions) list = shuffle(list);
+
+  return list.map(q => {
+    if (q.type === "dropdownMatrix") {
+      return {
+        ...q,
+        rows: (q.rows || []).map(r => ({ ...r })),
+        columns: (q.columns || []).map(c => ({
+          ...c,
+          options: (c.options || []).slice(),
+          optionsByRow: Object.keys(c.optionsByRow || {}).reduce((acc, k) => {
+            acc[k] = (c.optionsByRow?.[k] || []).slice();
+            return acc;
+          }, {}),
+          correctByRow: { ...(c.correctByRow || {}) }
+        }))
+      };
+    }
+
+    if (q.type === "dragMatch") {
+      return {
+        ...q,
+        items: (q.items || []).map(it => ({ ...it })),
+        targets: (q.targets || []).map(t => ({ ...t })),
+        correctByTarget: { ...(q.correctByTarget || {}) }
+      };
+    }
+
+    if (q.type === "inlineDropdown") {
+      return {
+        ...q,
+        inline: {
+          parts: (q.inline?.parts || []).map(p => ({ ...p })),
+          slots: Object.keys(q.inline?.slots || {}).reduce((acc, k) => {
+            const s = q.inline.slots[k] || {};
+            acc[k] = { ...s, options: (s.options || []).slice() };
+            return acc;
+          }, {})
+        }
+      };
+    }
+
+
+    const canShuffleThis = runSettings.shuffleAnswers && q.allowAnswerShuffle;
+    const answers = canShuffleThis ? shuffle(q.answers) : q.answers.slice();
+
+    const keys = buildOptionKeys(answers.length);
+    const mapping = {};
+
+    const correctValues = Array.isArray(q.correctAnswer) ? q.correctAnswer.slice() : [q.correctAnswer];
+    const correctKeys = [];
+
+    keys.forEach((k, i) => {
+      mapping[k] = answers[i];
+      if (correctValues.includes(answers[i])) correctKeys.push(k);
+    });
+
+    return {
+      ...q,
+      keysFixed: keys,
+      mappingFixed: mapping,
+      correctValuesFixed: correctValues,
+      correctKeysFixed: correctKeys
+    };
+  });
+}
+
+
+      function getQuestionNumberForRange(qObj) {
+        const id = String(qObj?.id || "");
+        let m = id.match(/-q(\d+)\b/i);
+        if (m) return parseInt(m[1], 10);
+        const p = String(qObj?.prompt || "");
+        m = p.match(/\bNO\.(\d+)\b/i);
+        if (m) return parseInt(m[1], 10);
+        return null;
+      }
+
+      function parseQuestionRange(raw) {
+        const s = String(raw || "").trim();
+        if (!s) return null;
+        const m = s.match(/^\s*(\d+)\s*-\s*(\d+)\s*$/);
+        if (!m) return { error: true };
+        const a = parseInt(m[1], 10);
+        const b = parseInt(m[2], 10);
+        if (!Number.isFinite(a) || !Number.isFinite(b) || a <= 0 || b <= 0) return { error: true };
+        if (a > b) return { error: true };
+        return { from: a, to: b };
+      }
+
+      function getSelectedExamQuestions() {
+        const exam = optExamName.value;
+        return questionBank[exam] || [];
+      }
+
+                  async function updateExamInfo() {
+              clearMsg(menuMsg);
+              const exam = optExamName.value;
+              examInfo.textContent = `Carregando questões para ${exam}...`;
+              startBtn.disabled = true;
+
+              try {
+                await ensureExamLoaded(exam);
+              } catch (err) {
+                setMsg(menuMsg, `⚠️ ${err.message || err}`, "warn");
+                examInfo.textContent = `Questões cadastradas para ${exam}: 0`;
+                startBtn.disabled = true;
+                return;
+              }
+
+              const qs = questionBank[exam] || [];
+              examInfo.textContent = `Questões cadastradas para ${exam}: ${qs.length}`;
+
+              if (qs.length === 0) {
+                setMsg(menuMsg, `⚠️ Não há questões cadastradas para ${exam}.`, "warn");
+                startBtn.disabled = true;
+              } else {
+                startBtn.disabled = false;
+              }
+            }
+
+
+                  async function startRun(){
+              const exam = optExamName.value;
+              startBtn.disabled = true;
+              clearMsg(menuMsg);
+
+              try {
+                await ensureExamLoaded(exam);
+              } catch (err) {
+                setMsg(menuMsg, `⚠️ ${err.message || err}`, "warn");
+                await updateExamInfo();
+                return;
+              }
+
+              let selectedQuestions = getSelectedExamQuestions();
+
+              const typeFilter = {
+                mcq: !!optTypeMcq.checked,
+                matrix: !!optTypeMatrix.checked,
+                inline: !!optTypeInline.checked,
+                drag: !!optTypeDrag.checked,
+                unsupported: !!optTypeUnsupported.checked
+              };
+
+              selectedQuestions = selectedQuestions.filter(q => {
+                const t = classifyQuestionTypeRaw(q);
+                return !!typeFilter[t];
+              });
+
+              const rangeParsed = parseQuestionRange(optQuestionRange?.value);
+              if (rangeParsed?.error) {
+                setMsg(menuMsg, "⚠️ Intervalo inválido. Use ex.: 1-50 ou 3-75.", "warn");
+                startBtn.disabled = false;
+                return;
+              }
+              if (rangeParsed) {
+                selectedQuestions = selectedQuestions.filter(q => {
+                  const n = getQuestionNumberForRange(q);
+                  return n != null && n >= rangeParsed.from && n <= rangeParsed.to;
+                });
+                if (!selectedQuestions.length) {
+                  setMsg(menuMsg, "⚠️ Nenhuma questão encontrada no intervalo informado.", "warn");
+                  startBtn.disabled = false;
+                  return;
+                }
+              }
+
+              if (!selectedQuestions.length) { setMsg(menuMsg, "⚠️ Nenhuma questão corresponde aos tipos selecionados.", "warn"); startBtn.disabled = false; return; }
+
+              const mins = parseInt(optTimerMinutes.value, 10);
+              const safeMins = Number.isFinite(mins) && mins > 0 ? mins : 60;
+
+              const passPct = parseInt(optPassPct.value, 10);
+              const safePassPct = [50,60,70,80,90,100].includes(passPct) ? passPct : 70;
+
+              runSettings = {
+                examName: optExamName.value,
+                passThreshold: safePassPct,
+                shuffleQuestions: !!optShuffleQuestions.checked,
+                shuffleAnswers: !!optShuffleAnswers.checked,
+                showFeedback: !!optShowFeedback.checked,
+                showCorrectOnWrong: !!optShowCorrectOnWrong.checked,
+                timerEnabled: !!optEnableTimer.checked,
+                timerSeconds: safeMins * 60,
+                typeFilter
+              }
+
+              examPill.textContent = `Prova: ${runSettings.examName}`;
+              resultTitleEl.textContent = `Resultado — ${runSettings.examName}`;
+
+              userAnswers.clear();
+              idx = 0;
+              questionsRun = buildRun(selectedQuestions);
+              refreshQuestionJumpOptions();
+
+              gotoQuiz();
+              startTimerIfEnabled();
+              render();
+            }
+
+
+
+      function render(){
+        clearMsg(msgEl);
+
+        const q = questionsRun[idx];
+        if (!q) { showResults(false); return; }
+
+        qTitleExamEl.textContent = runSettings.examName;
+        qTitleOfEl.textContent = `de ${questionsRun.length}`;
+        qPromptEl.innerHTML = formatPromptHtml(getPromptForDisplay(q));
+        refreshQuestionJumpOptions();
+
+        const thisRenderToken = ++imageRenderToken;
+
+        function setQuestionImage(el, bases, warnLabel, showWarn) {
+          el.onload = null;
+          el.onerror = null;
+
+          const baseList = Array.isArray(bases) ? bases : [bases];
+          const cleaned = baseList
+            .map(v => String(v || "").trim())
+            .filter(v => v);
+
+          if (cleaned.length === 0) {
+            el.removeAttribute("src");
+            hide(el);
+            return;
+          }
+
+          const candidates = [];
+          const seen = new Set();
+          cleaned.forEach(b => {
+            const hasExt = /\.(png|jpg|jpeg|webp)$/i.test(b);
+            const c = hasExt ? [b] : [b, `${b}.png`, `${b}.jpg`, `${b}.jpeg`, `${b}.webp`];
+            c.forEach(u => {
+              const key = u.toLowerCase();
+              if (!seen.has(key)) { seen.add(key); candidates.push(u); }
+            });
+          });
+
+          let imgTry = 0;
+
+          el.onload = () => {
+            if (thisRenderToken !== imageRenderToken) return;
+            show(el);
+          };
+
+          el.onerror = () => {
+            if (thisRenderToken !== imageRenderToken) return;
+            imgTry++;
+            if (imgTry < candidates.length) {
+              el.src = candidates[imgTry];
+              return;
+            }
+            hide(el);
+            if (showWarn) setMsg(msgEl, `⚠️ Não consegui carregar a imagem: "${warnLabel}".`, "warn");
+          };
+
+          el.src = candidates[imgTry];
+        }
+
+                // Auto-carrega imagens pelo padrão: <PASTA_DA_PROVA>/<prova><q><numero>[.<2..5>]
+        function examPrefixFromName(name) {
+          return String(name || "")
+            .toLowerCase()
+            .replace(/[^a-z0-9]/g, "");
+        }
+        function examFolderFromName(name) {
+          return String(name || "").trim().replace(/[\\/]+$/g, "");
+        }
+        function questionNumberFrom(qObj) {
+          const id = String(qObj?.id || "");
+          let m = id.match(/-q(\d+)\b/i);
+          if (m) return parseInt(m[1], 10);
+          const p = String(qObj?.prompt || "");
+          m = p.match(/\bNO\.\s*(\d+)\b/i);
+          if (m) return parseInt(m[1], 10);
+          return null;
+        }
+        function isFullImagePath(value) {
+          const v = String(value || "").trim();
+          return /^(?:https?:|data:|blob:|file:|[a-z]:\\|\\\\|\/)/i.test(v) || v.includes("/") || v.includes("\\");
+        }
+        function buildImageBaseCandidates(baseName, folder) {
+          const raw = String(baseName || "").trim();
+          if (!raw) return [];
+
+          const out = [];
+          const seen = new Set();
+          const push = (v) => {
+            const s = String(v || "").trim().replace(/\\/g, "/");
+            if (!s) return;
+            const key = s.toLowerCase();
+            if (!seen.has(key)) {
+              seen.add(key);
+              out.push(s);
+            }
+          };
+
+          if (isFullImagePath(raw)) {
+            push(raw);
+          } else {
+            push(raw);
+            if (folder) push(`${folder}/${raw}`);
+          }
+
+          return out;
+        }
+
+        const exPrefix = examPrefixFromName(runSettings.examName);
+        const examFolder = examFolderFromName(runSettings.examName);
+        const qNum = questionNumberFrom(q);
+        const stem = (exPrefix && qNum != null) ? `${exPrefix}q${qNum}` : "";
+
+        const autoImgs = stem ? [
+          buildImageBaseCandidates(stem, examFolder),
+          buildImageBaseCandidates(`${stem}.2`, examFolder),
+          buildImageBaseCandidates(`${stem}.3`, examFolder),
+          buildImageBaseCandidates(`${stem}.4`, examFolder),
+          buildImageBaseCandidates(`${stem}.5`, examFolder)
+        ] : [[], [], [], [], []];
+
+        // Mantém compatibilidade: se existir q.image/q.image2/etc, tenta junto.
+        setQuestionImage(imgEl,  [...autoImgs[0], ...buildImageBaseCandidates(q.image,  examFolder)], autoImgs[0][0] || q.image,  false);
+        setQuestionImage(imgEl2, [...autoImgs[1], ...buildImageBaseCandidates(q.image2, examFolder)], autoImgs[1][0] || q.image2, false);
+        setQuestionImage(imgEl3, [...autoImgs[2], ...buildImageBaseCandidates(q.image3, examFolder)], autoImgs[2][0] || q.image3, false);
+        setQuestionImage(imgEl4, [...autoImgs[3], ...buildImageBaseCandidates(q.image4, examFolder)], autoImgs[3][0] || q.image4, false);
+        setQuestionImage(imgEl5, [...autoImgs[4], ...buildImageBaseCandidates(q.image5, examFolder)], autoImgs[4][0] || q.image5, false);
+
+optsEl.innerHTML = "";
+        const saved = userAnswers.get(q.id);
+        const savedKeys = saved?.chosenKeys || [];
+
+        if (isDragMatchQuestion(q)) {
+          renderDragMatchQuestion(q, saved?.dragValues || {});
+        } else if (isInlineDropdownQuestion(q)) {
+          renderInlineDropdownQuestion(q, saved?.inlineValues || {});
+        } else if (isDropdownQuestion(q)) {
+          renderDropdownQuestion(q, saved?.dropdownValues || {});
+        } else {
+          q.keysFixed.forEach((key) => {
+            const b = document.createElement("button");
+            b.className = "opt" + (savedKeys.includes(key) ? " selected" : "");
+            b.textContent = `${key}. ${q.mappingFixed[key]}`;
+            b.addEventListener("click", () => onChoose(key));
+            optsEl.appendChild(b);
+          });
+        }
+
+        prevBtn.disabled = idx === 0;
+        // Permite ir para a próxima questão mesmo sem resposta.
+        nextBtn.disabled = false;
+        nextBtn.textContent = (idx === questionsRun.length - 1) ? "Finalizar" : "Próxima";
+
+        if (isQuestionAnswered(q, saved) && runSettings.showFeedback) {
+          if (saved?.isCorrect) {
+            setMsg(msgEl, "✅ Correto.", "ok");
+          } else {
+            let t = "❌ Errado.";
+            if (runSettings.showCorrectOnWrong) {
+              t += `\nRespostas corretas:\n${getCorrectAnswerLines(q).join("\n")}`;
+            }
+            setMsg(msgEl, t, "bad");
+          }
+        }
+      }
+
+      function onChoose(chosenKey){
+        if (timedOut) return;
+
+        const q = questionsRun[idx];
+        if (isDropdownQuestion(q)) return;
+        const saved = userAnswers.get(q.id);
+        const currentKeys = saved?.chosenKeys ? saved.chosenKeys.slice() : [];
+
+        const multi = isMulti(q);
+
+        let newKeys;
+        if (!multi) {
+          newKeys = [chosenKey];
+        } else {
+          if (currentKeys.includes(chosenKey)) newKeys = currentKeys.filter(k => k !== chosenKey);
+          else newKeys = currentKeys.concat([chosenKey]);
+        }
+
+        const isCorrect = (newKeys.length > 0) ? evaluateIsCorrect(q, newKeys) : false;
+        userAnswers.set(q.id, { chosenKeys: newKeys, isCorrect });
+
+        refreshQuestionJumpOptions();
+
+        Array.from(optsEl.querySelectorAll("button.opt")).forEach(btn => {
+          const isSelected = newKeys.some(k => btn.textContent.startsWith(k + "."));
+          btn.classList.toggle("selected", isSelected);
+        });
+
+        updateFeedbackForCurrentQuestion();
+      }
+
+function onDropdownChange(rowId, colId, value){
+  if (timedOut) return;
+
+  const q = questionsRun[idx];
+  if (!isDropdownQuestion(q)) return;
+
+  const saved = userAnswers.get(q.id);
+  const dropdownValues = cloneDropdownValues(saved?.dropdownValues || {});
+
+  dropdownValues[rowId] = dropdownValues[rowId] || {};
+  dropdownValues[rowId][colId] = value || "";
+
+  const fullyAnswered = getFilledDropdownCellCount(q, dropdownValues) === getDropdownRequiredCellCount(q);
+  const isCorrect = fullyAnswered ? evaluateDropdownIsCorrect(q, dropdownValues) : false;
+
+  userAnswers.set(q.id, { dropdownValues, isCorrect });
+
+  refreshQuestionJumpOptions();
+  updateFeedbackForCurrentQuestion();
+}
+
+      function goNext(){
+        if (timedOut) return;
+
+        // Permite pular questões sem responder.
+        if (idx === questionsRun.length - 1) { showResults(false, true); return; }
+        idx++;
+        render();
+      }
+
+      function goPrev(){
+        if (timedOut) return;
+        if (idx === 0) return;
+        idx--;
+        render();
+      }
+
+      function finishExam(){
+        if (timedOut) return;
+        const ok = window.confirm("Finalizar a prova agora? Questões não respondidas serão consideradas erradas.");
+        if (!ok) return;
+        showResults(false, true);
+      }
+
+      // ✅ ALTERAÇÃO: questões em formato não suportado NÃO entram no cálculo de %.
+      // ✅ Se o usuário não finalizar (timeout), as não respondidas contam como erradas apenas entre as questões válidas.
+      function showResults(timedOutEnded, endedByUser){
+        endedByUser = !!endedByUser;
+        if (!resultCard.classList.contains("hidden")) return;
+
+        const scoredQuestions = questionsRun.filter(q => !isUnsupportedPlaceholderQuestion(q));
+        const excludedCount = questionsRun.length - scoredQuestions.length;
+        const total = scoredQuestions.length;
+
+        let answered = 0;
+        let correct = 0;
+        const wrongIds = [];
+
+        scoredQuestions.forEach(q => {
+          const ans = userAnswers.get(q.id);
+          const hasAnswer = isQuestionAnswered(q, ans);
+
+          if (hasAnswer) {
+            answered++;
+            if (ans.isCorrect) correct++;
+            else wrongIds.push(q.id);
+          } else {
+            wrongIds.push(q.id);
+          }
+        });
+
+        const remaining = Math.max(0, total - answered);
+        const pct = total > 0 ? Math.round((correct / total) * 100) : 0;
+
+        scorePctEl.textContent = `${pct}%`;
+
+        scoreDetailEl.textContent =
+          `${correct} de ${total} corretas` +
+          (excludedCount ? ` (${excludedCount} excluída(s) do cálculo)` : "") +
+          (remaining > 0 ? ` (${answered} respondidas, ${remaining} não respondidas)` : "");
+
+        resultTitleEl.textContent = `Resultado — ${runSettings.examName}`;
+
+        const timeoutPrefix = timedOutEnded ? "⏰ Tempo esgotado. Questões não respondidas foram consideradas erradas.\n" : "";
+        const manualPrefix = (!timedOutEnded && endedByUser && remaining > 0) ? "🧾 Prova finalizada. Questões não respondidas foram consideradas erradas.\n" : "";
+        const prefix = timeoutPrefix + manualPrefix;
+
+        if (pct >= runSettings.passThreshold) {
+          passFailMsgEl.textContent = prefix + `✅ Aprovado! (mínimo ${runSettings.passThreshold}%)`;
+          passFailMsgEl.className = "msg ok";
+        } else {
+          passFailMsgEl.textContent = prefix + `❌ Reprovado (mínimo ${runSettings.passThreshold}% para aprovação).`;
+          passFailMsgEl.className = "msg bad";
+        }
+
+        if (timedOutEnded && remaining > 0) show(continueBtn);
+        else hide(continueBtn);
+
+        wrongListEl.innerHTML = "";
+        if (wrongIds.length > 0) {
+          show(wrongListWrap);
+          wrongIds.forEach(id => {
+            const q = questionsRun.find(x => x.id === id);
+            const li = document.createElement("li");
+            li.textContent = `${q?.prompt || id} (${q?.image || "sem imagem"})`;
+            wrongListEl.appendChild(li);
+          });
+          show(retryWrongBtn);
+          retryWrongBtn.dataset.wrong = JSON.stringify(wrongIds);
+        } else {
+          hide(wrongListWrap);
+          hide(retryWrongBtn);
+          retryWrongBtn.dataset.wrong = "[]";
+        }
+
+        gotoResult();
+      }
+
+      function retryWrong(){
+        const ids = JSON.parse(retryWrongBtn.dataset.wrong || "[]");
+        const all = questionBank[runSettings.examName] || [];
+        const subset = all.filter(q => ids.includes(q.id));
+        if (!subset.length) return restartAllKeepingSettings();
+
+        timedOut = false;
+        stopTimer();
+
+        userAnswers.clear();
+        idx = 0;
+        questionsRun = buildRun(subset);
+        refreshQuestionJumpOptions();
+
+        startTimerIfEnabled();
+        gotoQuiz();
+        render();
+      }
+
+      function continueAfterTimeout(){
+        timedOut = false;
+        stopTimer();
+        runSettings.timerEnabled = false;
+        hide(timerBar);
+
+        gotoQuiz();
+        render();
+      }
+
+      function restartAllKeepingSettings(){
+        timedOut = false;
+        stopTimer();
+
+        const selectedQuestions = questionBank[runSettings.examName] || [];
+        if (!selectedQuestions.length) {
+          gotoMenu();
+          updateExamInfo();
+          return;
+        }
+
+        examPill.textContent = `Prova: ${runSettings.examName}`;
+        resultTitleEl.textContent = `Resultado — ${runSettings.examName}`;
+
+        userAnswers.clear();
+        idx = 0;
+        questionsRun = buildRun(selectedQuestions);
+        refreshQuestionJumpOptions();
+
+        startTimerIfEnabled();
+        gotoQuiz();
+        render();
+      }
+
+      optShowFeedback.addEventListener("change", updateDependencies);
+      optEnableTimer.addEventListener("change", updateDependencies);
+      optExamName.addEventListener("change", updateExamInfo);
+
+      startBtn.addEventListener("click", startRun);
+      prevBtn.addEventListener("click", goPrev);
+      nextBtn.addEventListener("click", goNext);
+      finishBtn.addEventListener("click", finishExam);
+      qJumpSel.addEventListener("change", jumpToQuestionFromSelect);
+
+      restartBtn.addEventListener("click", () => { clearMsg(menuMsg); gotoMenu(); updateExamInfo(); });
+      backToMenuBtn.addEventListener("click", () => { clearMsg(menuMsg); gotoMenu(); updateExamInfo(); });
+
+      retryAllBtn.addEventListener("click", restartAllKeepingSettings);
+      retryWrongBtn.addEventListener("click", retryWrong);
+      continueBtn.addEventListener("click", continueAfterTimeout);
+
+      updateDependencies();
+
+      hide(menuCard); hide(quizCard); hide(resultCard);
+
+      setExam("AZ-104");
+      updateExamInfo();
+    
+
+      // ====== Tipos de questão (dropdown multi-seleção) ======
+      const typeDD = document.getElementById('typeDD');
+      const typeDDBtn = document.getElementById('typeDDBtn');
+      const typeDDMenu = document.getElementById('typeDDMenu');
+      const typeDDLabel = document.getElementById('typeDDLabel');
+
+      function getTypeChecks() {
+        return {
+          mcq: document.getElementById('optTypeMcq'),
+          matrix: document.getElementById('optTypeMatrix'),
+          inline: document.getElementById('optTypeInline'),
+          drag: document.getElementById('optTypeDrag'),
+          unsupported: document.getElementById('optTypeUnsupported')
+        };
+      }
+
+      function updateTypeDDLabel() {
+        const c = getTypeChecks();
+        const entries = [
+          ['Alternativas', c.mcq?.checked],
+          ['Dropdown', c.matrix?.checked],
+          ['Texto', c.inline?.checked],
+          ['Arrastar', c.drag?.checked],
+          ['Incompatível', c.unsupported?.checked]
+        ];
+        const selected = entries.filter(e => e[1]).map(e => e[0]);
+        if (selected.length === entries.length) {
+          typeDDLabel.textContent = 'Todas';
+        } else if (selected.length === 0) {
+          typeDDLabel.textContent = 'Nenhuma';
+        } else if (selected.length <= 2) {
+          typeDDLabel.textContent = selected.join(', ');
+        } else {
+          typeDDLabel.textContent = `${selected.length} selecionadas`;
+        }
+      }
+
+      function openTypeDD(open) {
+        if (!typeDD) return;
+        const isOpen = typeDD.classList.contains('open');
+        const next = (typeof open === 'boolean') ? open : !isOpen;
+        typeDD.classList.toggle('open', next);
+        typeDDBtn?.setAttribute('aria-expanded', next ? 'true' : 'false');
+      }
+
+      typeDDBtn?.addEventListener('click', (e) => {
+        e.preventDefault();
+        openTypeDD();
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!typeDD) return;
+        if (!typeDD.contains(e.target)) openTypeDD(false);
+      });
+
+      Object.values(getTypeChecks()).forEach(ch => {
+        if (!ch) return;
+        ch.addEventListener('change', () => {
+          updateTypeDDLabel();
+        });
+      });
+
+      updateTypeDDLabel();
+
+});
+  </script>
+
+<!-- build: q4-q20-yesno-radio-grid-v3 -->
+</body>
+</html>

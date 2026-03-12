@@ -1,0 +1,37 @@
+window.__QUESTION_BANK_FILES__ = window.__QUESTION_BANK_FILES__ || {};
+window.__QUESTION_BANK_FILES__["AZ-104"] = [
+          { id:"az104-q1", prompt:"Choose the correct answer.", image:"q1.png",
+            answers:["W10_OsDisk","VNet1","VNet3","W10"], correctAnswer:"W10_OsDisk", allowAnswerShuffle:true },
+          { id:"az104-q2", prompt:"Choose the correct answer.", image:"q2.png",
+            answers:["Yes","No"], correctAnswer:"No", allowAnswerShuffle:false },
+          { id:"az104-q3", prompt:"Choose the correct answer.", image:"q3.png",
+            answers:["Yes","No"], correctAnswer:"No", allowAnswerShuffle:false },
+          { id:"az104-q4", prompt:"Choose the correct answer.", image:"q4.png",
+            answers:["Service Map","Connection Troubleshoot","Network Performance Monitor","Effective routes"],
+            correctAnswer:"Network Performance Monitor", allowAnswerShuffle:true },
+          { id:"az104-q5", prompt:"Choose the correct answer.", image:"q5.png",
+            answers:["Yes","No"], correctAnswer:"Yes", allowAnswerShuffle:false },
+          { id:"az104-q6", prompt:"Choose the correct answer.", image:"q6.png",
+            answers:[
+              "Create Azure Management Groups for each department",
+              "Create a resource group for each department",
+              "Assign tags to the virtual machines",
+              "Modify the settings of the virtual machines"
+            ],
+            correctAnswer:"Assign tags to the virtual machines", allowAnswerShuffle:true },
+          { id:"az104-q7", prompt:"Choose the correct answer.", image:"q7.png",
+            answers:["Run the aa aks create command","Create a host pool on Cluster1","Upload App1 to registry 1","Run the kubect1 apply command"],
+            correctAnswer:"Upload App1 to registry 1", allowAnswerShuffle:true },
+          { id:"az104-q8", prompt:"Choose the correct answer.", image:"q8.png",
+            answers:["Application Insights Search","Application Insights Search","Client-side monitoring","Live Metrics Stream in Application Insights"],
+            correctAnswer:"Live Metrics Stream in Application Insights", allowAnswerShuffle:true },
+          { id:"az104-q9", prompt:"Choose the correct answer.", image:"q9.png",
+            answers:["Azure AD roles","Administrative units","Access packages in Azure AD entitlement management","Azure roles"],
+            correctAnswer:"Administrative units", allowAnswerShuffle:true },
+          { id:"az104-q10", prompt:"Choose the correct answer.", image:"q10.png",
+            answers:["Geo-redundant storage","Read-only geo-redundant storage","Zone-redundant storage","Locally redundant storage"],
+            correctAnswer:"Read-only geo-redundant storage", allowAnswerShuffle:true },
+          { id:"az104-q11", prompt:"Choose TWO correct answers.", image:"q11.png",
+            answers:["Reader","Storage Blob Data Contributor","Storage Account Contributor","Storage Blob Data Reader","Contributor"],
+            correctAnswer:["Reader","Storage Account Contributor"], allowAnswerShuffle:true }
+        ];
