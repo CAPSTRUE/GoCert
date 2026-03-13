@@ -5865,86 +5865,86 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     ]
   },
   {
-    "id": "az500-q238",
-    "prompt": "NO.238 You have an Azure AD tenant named contoso.com that has Azure AD Premium P1 licenses.\\nYou need to create a group named Group! that will be assigned the Global reader role.\\nWhich portal should you use to create Group1 and which type of group should you create? To\\nanswer, select the appropriate options in the answer area.\\nNOTE: Each correct selection is worth one point",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "r1",
-        "label": " "
-      }
-    ],
-    "columns": [
-      {
-        "id": "portal",
-        "label": "Portal",
-        "options": [
+  "id": "az500-q238",
+  "prompt": "NO.238 You have an Azure AD tenant named contoso.com that has Azure AD Premium P1 licenses.\\nYou need to create a group named Group! that will be assigned the Global reader role.\\nWhich portal should you use to create Group1 and which type of group should you create? To\\nanswer, select the appropriate options in the answer area.\\nNOTE: Each correct selection is worth one point",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "portal",
+      "label": "Portal"
+    },
+    {
+      "id": "grouptype",
+      "label": "Group type"
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "optionsByRow": {
+        "portal": [
           "The Azure Active Directory admin center only",
           "The Microsoft 365 admin center only",
           "The Azure Active Directory admin center or the Microsoft 365 admin center"
         ],
-        "correctByRow": {
-          "r1": "The Azure Active Directory admin center only"
-        }
-      },
-      {
-        "id": "grouptype",
-        "label": "Group type",
-        "options": [
+        "grouptype": [
           "Security only",
           "Microsoft 365 only",
           "Security or mail-enabled security only",
           "Security or Microsoft 365 only",
           "Security, Microsoft 365, or mail-enabled security"
-        ],
-        "correctByRow": {
-          "r1": "Security only"
-        }
-      }
-    ]
-  },
-  {
-    "id": "az500-q239",
-    "prompt": "NO.239 You have an Azure subscription named Sub1. Sub1 has an Azure Storage account named Storage1 that contains the resources shown in the following table.\\n\\nYou generate a shared access signature (SAS) to connect to the blob service and the file service.\\nWhich tool can you use to access the contents in Container1 and Share1 by using the SAS? To answer, select the appropriate options in the answer area.\\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "r1",
-        "label": " "
-      }
-    ],
-    "columns": [
-      {
-        "id": "container1",
-        "label": "Tools for Container1",
-        "options": [
-          "Robocopy.exe",
-          "Azure Storage Explorer",
-          "File Explorer"
-        ],
-        "correctByRow": {
-          "r1": "Azure Storage Explorer"
-        }
+        ]
       },
-      {
-        "id": "share1",
-        "label": "Tools for Share1",
-        "options": [
+      "correctByRow": {
+        "portal": "The Azure Active Directory admin center only",
+        "grouptype": "Security only"
+      }
+    }
+  ]
+},
+{
+  "id": "az500-q239",
+  "prompt": "NO.239 You have an Azure subscription named Sub1. Sub1 has an Azure Storage account named Storage1 that contains the resources shown in the following table.\\n\\nYou generate a shared access signature (SAS) to connect to the blob service and the file service.\\nWhich tool can you use to access the contents in Container1 and Share1 by using the SAS? To answer, select the appropriate options in the answer area.\\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "container1",
+      "label": "Tools for Container1"
+    },
+    {
+      "id": "share1",
+      "label": "Tools for Share1"
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "optionsByRow": {
+        "container1": [
           "Robocopy.exe",
           "Azure Storage Explorer",
           "File Explorer"
         ],
-        "correctByRow": {
-          "r1": "Azure Storage Explorer"
-        }
+        "share1": [
+          "Robocopy.exe",
+          "Azure Storage Explorer",
+          "File Explorer"
+        ]
+      },
+      "correctByRow": {
+        "container1": "Azure Storage Explorer",
+        "share1": "Azure Storage Explorer"
       }
-    ]
-  },
-  {
+    }
+  ]
+},
+{
     "id": "az500-q240",
     "prompt": "NO.240 You have an Azure web app named WebApp1.\\nYou upload a certificate to WebApp1.\\nYou need to make the certificate accessible to the app code of WebApp1.\\nWhat should you do?",
     "image": "",
@@ -6045,45 +6045,45 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "allowAnswerShuffle": true
   },
   {
-    "id": "az500-q246",
-    "prompt": "NO.246 You have a Microsoft Sentinel deployment.\\nYou need to connect a third-party security solution to the deployment. The third-party solution will\\nsend Common Event Format (CER-formatted messages.\\n‘What should you include in the solution? To answer, select the appropriate options in the answer\\narea.\\nNOTE: Each correct selection is worth one point.\\n‘ower Bren\\noe .\\nFora events to Moo Sentel ying .",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "r1",
-        "label": " "
-      }
-    ],
-    "columns": [
-      {
-        "id": "deploy",
-        "label": "Deploy",
-        "options": [
-          "A Windows server and a Windows Event Forwarding subscription",
+  "id": "az500-q246",
+  "prompt": "NO.246 You have a Microsoft Sentinel deployment.\\nYou need to connect a third-party security solution to the deployment. The third-party solution will\\nsend Common Event Format (CER-formatted messages.\\n‘What should you include in the solution? To answer, select the appropriate options in the answer\\narea.\\nNOTE: Each correct selection is worth one point.\\n‘ower Bren\\noe .\\nFora events to Moo Sentel ying .",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "deploy",
+      "label": "Deploy"
+    },
+    {
+      "id": "forward",
+      "label": "Forward events to Microsoft Sentinel by using"
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "optionsByRow": {
+        "deploy": [
           "A Linux server and a Syslog subscription",
-          "An Azure Log Analytics workspace only"
+          "A Windows server and a Windows Event Forwarding subscription",
+          "An Azure event hub that has a dedicated namespace"
         ],
-        "correctByRow": {
-          "r1": "A Windows server and a Windows Event Forwarding subscription"
-        }
+        "forward": [
+          "A Dependency agent",
+          "An Azure Arc enabled servers connected Machine agent ",
+          "An Azure Log Analytics agent"
+        ]
       },
-      {
-        "id": "forward",
-        "label": "Forward events to Microsoft Sentinel by using",
-        "options": [
-          "An Azure Log Analytics agent",
-          "The Azure Monitor agent",
-          "The Microsoft Sentinel data collector API"
-        ],
-        "correctByRow": {
-          "r1": "An Azure Log Analytics agent"
-        }
+      "correctByRow": {
+        "deploy": "A Windows server and a Windows Event Forwarding subscription",
+        "forward": "An Azure Log Analytics agent"
       }
-    ]
-  },
-  {
+    }
+  ]
+},
+{
     "id": "az500-q247",
     "prompt": "NO.247 You have an Azure Active Directory (Azure AD) tenant that contains a group named Groupt\\nYou need to ensure that the members of Groupt sign in by using passwordless authentication What\\nshould you do?\\n‘A. Configure the Microsoft Authenticator authentication method policy.",
     "image": "",
@@ -7200,7 +7200,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
           "Register an enterprise application in Azure AD."
         ],
         "correctByRow": {
-          "r": "Create an access policy in Azure Key Vault."
+          "r": "Generate a key on an HSM device."
         }
       }
     ]
@@ -7210,8 +7210,8 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "prompt": "NO.291 You have an Azure subscription named Sub1 that contains an Azure Log Analytics workspace\nnamed LAW1.\nYou have 500 Azure virtual machines that run Windows Server 2016 and are enrolled in LAW1.\nYou plan to add the System Update Assessment solution to LAW1.\nYou need to ensure that System Update Assessment-related logs are uploaded to LAW1 from 100 of\nthe virtual machines only.\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from\nthe list of actions to the answer area and arrange them in the correct order.",
     "image": "",
     "type": "dragMatch",
-    "allowAnswerShuffle": false,
-    "leftItems": [
+    "allowAnswerShuffle": true,
+  "items": [
       {
         "id": "a1",
         "label": "Create a new workspace."
@@ -7233,8 +7233,8 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
         "label": "Create a data source."
       }
     ],
-    "rightSlots": [
-      {
+  "targets": [
+    {
         "id": "s1",
         "label": "Step 1"
       },
@@ -7248,9 +7248,9 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       }
     ],
     "correctMatches": {
-      "s1": "Create a computer group.",
-      "s2": "Create a scope configuration.",
-      "s3": "Apply the scope configuration to the solution."
+      "s1": "a4",
+      "s2": "a3",
+      "s3": "a2"
     }
   },
   {
@@ -7549,65 +7549,46 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "allowAnswerShuffle": true
   },
   {
-    "id": "az500-q303",
-    "prompt": "NO.303 You have an Azure subscription named Subcription1 that contains the resources shown in\nthe following table.\nYou have an Azure subscription named Subcription2 that contains the following resources:\n* An Azure Sentinel workspace\n\n* An Azure Event Grid instance\nYou need to ingest the CEF messages from the NVAs to Azure Sentinel.\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "type": "dragMatch",
-    "allowAnswerShuffle": false,
-    "items": [
-      {
-        "id": "it1",
-        "label": "An Azure Log Analytics agent on a Linux virtual machine"
-      },
-      {
-        "id": "it2",
-        "label": "A Data Factory pipeline"
-      },
-      {
-        "id": "it3",
-        "label": "An Event Hubs namespace"
-      },
-      {
-        "id": "it4",
-        "label": "An Azure Service Bus queue"
-      },
-      {
-        "id": "it5",
-        "label": "A new Azure Log Analytics workspace"
-      },
-      {
-        "id": "it6",
-        "label": "A new Azure Sentinel data connector"
-      },
-      {
-        "id": "it7",
-        "label": "A new Azure Sentinel playbook"
-      },
-      {
-        "id": "it8",
-        "label": "A new Event Grid resource provider"
-      }
-    ],
-    "targets": [
-      {
-        "id": "sub1_1",
-        "label": "Subscription1 (selection 1)"
-      },
-      {
-        "id": "sub1_2",
-        "label": "Subscription1 (selection 2)"
-      },
-      {
-        "id": "sub2",
-        "label": "Subscription2"
-      }
-    ],
-    "correctByTarget": {
-      "sub1_1": "it2",
-      "sub1_2": "it3",
-      "sub2": "it5"
+  "id": "az500-q303",
+  "prompt": "NO.303 You have an Azure subscription named Subcription1 that contains the resources shown in\nthe following table.\nYou have an Azure subscription named Subcription2 that contains the following resources:\n* An Azure Sentinel workspace\n\n* An Azure Event Grid instance\nYou need to ingest the CEF messages from the NVAs to Azure Sentinel.\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "subscription1",
+      "label": "Subscription1:"
+    },
+    {
+      "id": "subscription2",
+      "label": "Subscription2:"
     }
-  },
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "",
+      "optionsByRow": {
+        "subscription1": [
+          "An Azure Log Analytics agent on a Linux virtual machine",
+          "A Data Factory pipeline",
+          "An Event Hubs namespace",
+          "An Azure Service Bus queue"
+        ],
+        "subscription2": [
+          "A new Azure Log Analytics workspace",
+          "A new Azure Sentinel data connector",
+          "A new Azure Sentinel playbook",
+          "A new Event Grid resource provider"
+        ]
+      },
+      "correctByRow": {
+        "subscription1": "An Event Hubs namespace",
+        "subscription2": "A new Azure Log Analytics workspace"
+      }
+    }
+  ]
+},
   {
     "id": "az500-q304",
     "prompt": "NO.304 Lab Task\nuse the following login credentials as needed:\nTo enter your username, place your cursor in the Sign in box and click on the username below.\nTo enter your password. place your cursor in the Enter password box and click on the password\nbelow.\nAzure Username: Userl -28681041@ExamUsers.com\nAzure Password: GpOAe4@lDg\nIf the Azure portal does not load successfully in the browser, press CTRL-K to reload the portal in a\nnew browser tab.\nThe following information is for technical support purposes only:\nLab Instance: 28681041\nTask 10\nYou need to create a new Azure AD directory named 28681041.onmicrosoft.com. The new directory\nmust contain a new user named user1@28681041.onmicrosoft.com.",
@@ -7984,14 +7965,17 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "prompt": "NO.323 You have an Azure subscription that contains the resources shown in the following table.\nYou need to ensure that ServerAdmins can perform the following tasks:\n* Create virtual machines in RG1 only.\n* Connect the virtual machines to the existing virtual networks in RG2 only.\nThe solution must use the principle of least privilege.\nWhich two role-based access control (RBAC) roles should you assign to ServerAdmins? Each correct\nanswer presents part of the solution.\nNOTE: Each correct selection is worth one point.",
     "image": "",
     "answers": [
-      "a custom RBAC role for RG2 IT Certification Guaranteed, The Easy Way! 281",
+      "a custom RBAC role for RG2",
       "the Network Contributor role for RG2",
       "the Contributor role for the subscription",
       "a custom RBAC role for the subscription",
       "the Network Contributor role for RG1",
       "the Virtual Machine Contributor role for RG1"
     ],
-    "correctAnswer": "a custom RBAC role for RG2 IT Certification Guaranteed, The Easy Way! 281",
+    "correctAnswer": [
+    "a custom RBAC role for RG2",
+    "the Virtual Machine Contributor role for RG1"
+    ],
     "allowAnswerShuffle": true
   },
   {
@@ -8005,15 +7989,40 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "allowAnswerShuffle": false
   },
   {
-    "id": "az500-q325",
-    "prompt": "NO.325 You have an Azure subscription.\nYou plan to implement Azure DDoS Protection. The solution must meet the following requirement:\n* Provide access to DDoS rapid response support during active attacks.\n* Project Basic SKU public IP addresses.\nYou need to recommend which type of DDoS projection to use for each requirement.\nWhat should you recommend? To answer, drag the appropriate DDoS projection types to the correct\nrequirements. Each DDoS Projection type may be used once, or not at all. You may need to drag the\n\nsplit bar between panes or scroll to view connect.\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "answers": [
-      "Questão em formato não suportado por este app (consulte o PDF)."
-    ],
-    "correctAnswer": "Questão em formato não suportado por este app (consulte o PDF).",
-    "allowAnswerShuffle": false
-  },
+  "id": "az500-q325",
+  "prompt": "NO.325 You have an Azure subscription.\nYou plan to implement Azure DDoS Protection. The solution must meet the following requirement:\n* Provide access to DDoS rapid response support during active attacks.\n* Project Basic SKU public IP addresses.\nYou need to recommend which type of DDoS projection to use for each requirement.\nWhat should you recommend? To answer, drag the appropriate DDoS projection types to the correct\nrequirements. Each DDoS Projection type may be used once, or not at all. You may need to drag the\n\nsplit bar between panes or scroll to view connect.\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "type": "dragMatch",
+  "allowAnswerShuffle": false,
+  "items": [
+    {
+      "id": "it1",
+      "label": "DDoS infrastructure protection"
+    },
+    {
+      "id": "it2",
+      "label": "DDoS IP Protection"
+    },
+    {
+      "id": "it3",
+      "label": "DDoS Network Protection"
+    }
+  ],
+  "targets": [
+    {
+      "id": "rapid_response",
+      "label": "Provide access to DDoS rapid response support during active attacks"
+    },
+    {
+      "id": "basic_sku",
+      "label": "Protect Basic SKU public IP addresses"
+    }
+  ],
+  "correctByTarget": {
+    "rapid_response": "it3",
+    "basic_sku": "it3"
+  }
+},
   {
     "id": "az500-q326",
     "prompt": "NO.326 You have an Azure subscription that contains the virtual machines shown in the following table.\nYou have an Azure Cosmos DB account named cosmos1 configured as shown in the following exhibit.\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nNOTE: Each correct selection is worth one point.",
@@ -8329,16 +8338,23 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       {
         "id": "resp",
         "label": "Resposta",
-        "options": [
+      "optionsByRow": {
+        "app1": [
           "User1 only",
           "User1 and User2 only",
           "User1 and User3 only",
-          "User1 and User4 only",
           "User1, User2, and User3 only",
-          "User1, User2, and User4 only",
           "User1, User2, User3, and User4"
         ],
-        "correctByRow": {
+        "app2": [
+          "User1 only",
+          "User1 and User2 only",
+          "User1 and User4 only",
+          "User1, User2, and User4 only",
+          "User1, User2, User3, and User4"
+        ]
+      },
+      "correctByRow": {
           "app1": "User1 and User3 only",
           "app2": "User1 and User4 only"
         }
@@ -8575,69 +8591,28 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "correctAnswer": "Application Administrator"
   },
   {
-    "id": "az500-q348",
-    "prompt": "NO.348 You have an Azure subscription that is linked to a Microsoft Entra tenant named\ncontoso.com. In contoso.\ncom, you register an app named App1. You need to perform the following tasks for App1:\n* Add and configure the Mobile and desktop applications platform.\n* Add the ipaddr optional claim.\nWhich two settings should you select for App1? To answer, select the appropriate settings in the\nanswer area.\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "type": "dragMatch",
-    "allowAnswerShuffle": false,
-    "items": [
-      {
-        "id": "it1",
-        "label": "Branding & properties"
-      },
-      {
-        "id": "it2",
-        "label": "Authentication"
-      },
-      {
-        "id": "it3",
-        "label": "Certificates & secrets"
-      },
-      {
-        "id": "it4",
-        "label": "Token configuration"
-      },
-      {
-        "id": "it5",
-        "label": "API permissions"
-      },
-      {
-        "id": "it6",
-        "label": "Expose an API"
-      },
-      {
-        "id": "it7",
-        "label": "App roles"
-      },
-      {
-        "id": "it8",
-        "label": "Owners"
-      },
-      {
-        "id": "it9",
-        "label": "Roles and administrators"
-      },
-      {
-        "id": "it10",
-        "label": "Manifest"
-      }
-    ],
-    "targets": [
-      {
-        "id": "step1",
-        "label": "Setting 1"
-      },
-      {
-        "id": "step2",
-        "label": "Setting 2"
-      }
-    ],
-    "correctByTarget": {
-      "step1": "it2",
-      "step2": "it4"
-    }
-  },
-  {
+  "id": "az500-q348",
+  "prompt": "NO.348 You have an Azure subscription that is linked to a Microsoft Entra tenant named\ncontoso.com. In contoso.\ncom, you register an app named App1. You need to perform the following tasks for App1:\n* Add and configure the Mobile and desktop applications platform.\n* Add the ipaddr optional claim.\nWhich two settings should you select for App1? To answer, select the appropriate settings in the\nanswer area.\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "answers": [
+    "Branding & properties",
+    "Authentication",
+    "Certificates & secrets",
+    "Token configuration",
+    "API permissions",
+    "Expose an API",
+    "App roles",
+    "Owners",
+    "Roles and administrators",
+    "Manifest"
+  ],
+  "correctAnswer": [
+    "Authentication",
+    "Token configuration"
+  ],
+  "allowAnswerShuffle": false
+},
+{
     "id": "az500-q349",
     "prompt": "NO.349 You have an Azure Subscription that is linked to an Azure Active Directory (Azure AD). The\ntenant contains the users shown in the following table.\nYou have an Azure key vault named Vault1 that has Purge protection set to Disabled. Vault1 contains\nthe access policies shown in the following table.\nYou create role assignments for Vault1 as shown in the following table.\nFor each of the following statements, Yes if the statement is true, Otherwise, select No.\nNOTE: Each correct selection is worth one point.",
     "image": "",
@@ -8689,49 +8664,48 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     ]
   },
   {
-    "id": "az500-q351",
-    "prompt": "NO.351 You plan to use Azure Sentinel to create an analytic rule that will detect suspicious threats\\nand automate responses.\\nWhich components are required for the rule? To answer, select the appropriate options in the",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "r",
-        "label": "Resposta"
-      }
-    ],
-    "columns": [
-      {
-        "id": "det",
-        "label": "Detect suspicious threats:",
-        "inputType": "select",
-        "options": [
+  "id": "az500-q351",
+  "prompt": "NO.351 You plan to use Azure Sentinel to create an analytic rule that will detect suspicious threats\\nand automate responses.\\nWhich components are required for the rule? To answer, select the appropriate options in the",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "det",
+      "label": "Detect suspicious threats:"
+    },
+    {
+      "id": "auto",
+      "label": "Automate responses:"
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "inputType": "select",
+      "optionsByRow": {
+        "det": [
           "A Kusto query language query",
           "A Transact-SQL query",
           "An Azure PowerShell query",
           "An Azure Sentinel playbook"
         ],
-        "correctByRow": {
-          "r": "A Kusto query language query"
-        }
-      },
-      {
-        "id": "auto",
-        "label": "Automate responses:",
-        "inputType": "select",
-        "options": [
+        "auto": [
           "An Azure Functions app",
           "An Azure PowerShell script",
           "An Azure Sentinel playbook",
           "An Azure Sentinel workbook"
-        ],
-        "correctByRow": {
-          "r": "An Azure Sentinel playbook"
-        }
+        ]
+      },
+      "correctByRow": {
+        "det": "A Kusto query language query",
+        "auto": "An Azure Sentinel playbook"
       }
-    ]
-  },
-  {
+    }
+  ]
+},
+{
     "id": "az500-q352",
     "prompt": "NO.352 You have an Azure virtual machines shown in the following table.\\nYou create an Azure Log Analytics workspace named Analytics1 in RG1 in the East US region.\\nWhich virtual machines can be enrolled in Analytics1?",
     "image": "",
@@ -8825,7 +8799,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
           "No"
         ],
         "correctByRow": {
-          "s1": "No",
+          "s1": "Yes",
           "s2": "Yes",
           "s3": "Yes"
         }
@@ -8941,47 +8915,46 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "allowAnswerShuffle": true
   },
   {
-    "id": "az500-q360",
-    "prompt": "NO.360 You have an Azure Sentinel workspace that contains an Azure Active Directory (Azure AD)\\nconnector, an Azure Log Analytics query named Query1 and a playbook named Playbook1.\\nQuery1 returns a subset of security events generated by Azure AD.\\nYou plan to create an Azure Sentinel analytic rule based on Query1 that will trigger Playbook1.\\nYou need to ensure that you can add Playbook1 to the new rule.\\nWhat should you do? To answer, select the appropriate options in the answer area.\\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "r",
-        "label": "Resposta"
-      }
-    ],
-    "columns": [
-      {
-        "id": "r1",
-        "label": "Create the rule and set the type to:",
-        "inputType": "select",
-        "options": [
+  "id": "az500-q360",
+  "prompt": "NO.360 You have an Azure Sentinel workspace that contains an Azure Active Directory (Azure AD)\\nconnector, an Azure Log Analytics query named Query1 and a playbook named Playbook1.\\nQuery1 returns a subset of security events generated by Azure AD.\\nYou plan to create an Azure Sentinel analytic rule based on Query1 that will trigger Playbook1.\\nYou need to ensure that you can add Playbook1 to the new rule.\\nWhat should you do? To answer, select the appropriate options in the answer area.\\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "r1",
+      "label": "Create the rule and set the type to:"
+    },
+    {
+      "id": "r2",
+      "label": "Configure the playbook to include:"
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "inputType": "select",
+      "optionsByRow": {
+        "r1": [
           "Fusion",
           "Microsoft Security incident creation",
           "Scheduled"
         ],
-        "correctByRow": {
-          "r": "Scheduled"
-        }
-      },
-      {
-        "id": "r2",
-        "label": "Configure the playbook to include:",
-        "inputType": "select",
-        "options": [
+        "r2": [
           "A managed connector",
           "A system-assigned managed identity",
           "A trigger",
           "Diagnostic settings"
-        ],
-        "correctByRow": {
-          "r": "A trigger"
-        }
+        ]
+      },
+      "correctByRow": {
+        "r1": "Scheduled",
+        "r2": "A trigger"
       }
-    ]
-  },
+    }
+  ]
+},
   {
     "id": "az500-q361",
     "prompt": "NO.361 You have an Azure subscription that contains two virtual machines named VM1 and VM2\\nthat run Windows Server 2019.\\nYou are implementing Update Management in Azure Automation.\\nYou plan to create a new update deployment named Update1.\\nYou need to ensure that Update! meets the following requirements:\\n* Automatically applies updates to VM1 and VM2.\\n* Automatically adds any new Windows Server 2019 virtual machines to Update1.\\nWhat should you include in Update1?",
@@ -8996,48 +8969,47 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "allowAnswerShuffle": true
   },
   {
-    "id": "az500-q362",
-    "prompt": "NO.362 You have a network security group (NSG) bound to an Azure subnet.\\nYou run Get-AzureRmNetworkSecurityRuleConfig and receive the output shown in the following\\nexhibit.\\nUse the drop-down menus to select the answer choice that completes each statement based on the\\ninformation presented in the graphic.\\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "r",
-        "label": "Resposta"
-      }
-    ],
-    "columns": [
-      {
-        "id": "b1",
-        "label": "Traffic destined for an Azure Storage account is",
-        "inputType": "select",
-        "options": [
+  "id": "az500-q362",
+  "prompt": "NO.362 You have a network security group (NSG) bound to an Azure subnet.\\nYou run Get-AzureRmNetworkSecurityRuleConfig and receive the output shown in the following\\nexhibit.\\nUse the drop-down menus to select the answer choice that completes each statement based on the\\ninformation presented in the graphic.\\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "b1",
+      "label": "Traffic destined for an Azure Storage account is"
+    },
+    {
+      "id": "b2",
+      "label": "FTP connections from 1.2.3.4 to 10.0.0.10/32 are"
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "inputType": "select",
+      "optionsByRow": {
+        "b1": [
           "able to connect to East US",
           "able to connect to East US 2",
           "able to connect to West Europe",
           "prevented from connecting to all regions"
         ],
-        "correctByRow": {
-          "r": "able to connect to East US 2"
-        }
-      },
-      {
-        "id": "b2",
-        "label": "FTP connections from 1.2.3.4 to 10.0.0.10/32 are",
-        "inputType": "select",
-        "options": [
+        "b2": [
           "allowed",
           "dropped",
           "forwarded"
-        ],
-        "correctByRow": {
-          "r": "dropped"
-        }
+        ]
+      },
+      "correctByRow": {
+        "b1": "able to connect to East US 2",
+        "b2": "dropped"
       }
-    ]
-  },
-  {
+    }
+  ]
+},
+{
     "id": "az500-q363",
     "prompt": "NO.363 You have an Azure subscription linked to an Azure Active Directory Premium Plan 1 tenant.\\nYou plan to implement Azure Active Directory (Azure AD) Identity Protection.\\nYou need to ensure that you can configure a user risk policy and a sign-in risk policy.\\nWhat should you do first?",
     "image": "",
@@ -9051,48 +9023,48 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "allowAnswerShuffle": true
   },
   {
-    "id": "az500-q364",
-    "prompt": "NO.364 You have an Azure subscription that contains the resources shown in the following table.\\nVNet1 contains the subnets shown in the following table.\\nYou plan to use the Azure portal to deploy an Azure firewall named AzFW1 to VNet1.\\nWhich resource group and subnet can you use to deploy AzFW1? To answer, select the appropriate\\noptions in the answer area.\\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "r",
-        "label": "Resposta"
-      }
-    ],
-    "columns": [
-      {
-        "id": "rg",
-        "label": "Resource group:",
-        "inputType": "select",
-        "options": [
+  "id": "az500-q364",
+  "prompt": "NO.364 You have an Azure subscription that contains the resources shown in the following table.\\nVNet1 contains the subnets shown in the following table.\\nYou plan to use the Azure portal to deploy an Azure firewall named AzFW1 to VNet1.\\nWhich resource group and subnet can you use to deploy AzFW1? To answer, select the appropriate\\noptions in the answer area.\\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "rg",
+      "label": "Resource group:"
+    },
+    {
+      "id": "sub",
+      "label": "Subnet:"
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "inputType": "select",
+      "optionsByRow": {
+        "rg": [
           "RG1",
+          "RG2",
           "RG3"
         ],
-        "correctByRow": {
-          "r": "RG3"
-        }
-      },
-      {
-        "id": "sub",
-        "label": "Subnet:",
-        "inputType": "select",
-        "options": [
+        "sub": [
           "AzureFirewallSubnet only",
           "AzureFirewall only",
           "AzureFirewall or AzureFirewallSubnet only",
           "AzureFirewall, AzureFirewallSubnet, or Subnet2 only",
           "AzureFirewall, AzureFirewallSubnet, Subnet1, or Subnet2"
-        ],
-        "correctByRow": {
-          "r": "AzureFirewallSubnet only"
-        }
+        ]
+      },
+      "correctByRow": {
+        "rg": "RG2",
+        "sub": "AzureFirewallSubnet only"
       }
-    ]
-  },
-  {
+    }
+  ]
+},
+{
     "id": "az500-q365",
     "prompt": "NO.365 You have an Azure Subscription that is connected to an on-premises datacenter and\\ncontains the resources shown in the following table.\\nYou need to configure virtual network service endpoints for VNet1 and VNet2. The solution must\\nmeet the following requirements:\\n* The virtual machines that connect to the subnet of VNet1 must access storage1, storage2, and\\nAzure AD by using the Microsoft backbone network.\\n* The virtual machines that connect to the subnet of VNet2 must access storage1 and KeyVault1 by\\nusing the Microsoft backbone network.\\n* The virtual machines must use the Microsoft backbone network to communicate between VNet1\\nand VNet2.\\nHow many service endpoints should you configure for each virtual network? To answer, select the\\nappropriate options in the answer area.\\nNOTE: Each correct selection is worth one point.",
     "image": "",
@@ -9113,15 +9085,24 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
         "id": "resp",
         "label": "Resposta",
         "inputType": "select",
-        "options": [
-          "0",
+      "optionsByRow": {
+        "v1": [
           "1",
           "2",
           "3",
-          "4"
+          "5",
+          "10"
         ],
+        "v2": [
+          "1",
+          "2",
+          "3",
+          "6",
+          "15"
+        ]
+      },
         "correctByRow": {
-          "v1": "3",
+          "v1": "1",
           "v2": "2"
         }
       }
@@ -9308,7 +9289,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
         "correctByRow": {
           "s1": "Yes",
           "s2": "Yes",
-          "s3": "Yes"
+          "s3": "No"
         }
       }
     ]
@@ -9459,10 +9440,10 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       "AWS only",
       "Alibaba Cloud and AWS only",
       "Alibaba Good and GCP only",
-      "AWS and GCP only 333 IT Certification Guaranteed, The Easy Way!",
+      "AWS and GCP only",
       "Alibaba Cloud, AWS. and GCP"
     ],
-    "correctAnswer": "AWS and GCP only 333 IT Certification Guaranteed, The Easy Way!",
+    "correctAnswer": "AWS and GCP only",
     "type": "multipleChoice",
     "allowAnswerShuffle": true
   },
@@ -9853,46 +9834,46 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "allowAnswerShuffle": true
   },
   {
-    "id": "az500-q399",
-    "prompt": "NO.399 Your on-premises network contains the servers shown in the following table.\nYou have an Azure subscription that contains multiple virtual machines that run either Windows Server 2019 or SLES.\nYou need to configure Azure Monitor to collect data from the on-premises servers and the Azure virtual machines.\nWhat should you select? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "r",
-        "label": "Resposta"
-      }
-    ],
-    "columns": [
-      {
-        "id": "os",
-        "label": "Operating systems:",
-        "options": [
+  "id": "az500-q399",
+  "prompt": "NO.399 Your on-premises network contains the servers shown in the following table.\nYou have an Azure subscription that contains multiple virtual machines that run either Windows Server 2019 or SLES.\nYou need to configure Azure Monitor to collect data from the on-premises servers and the Azure virtual machines.\nWhat should you select? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "os",
+      "label": "Operating systems:"
+    },
+    {
+      "id": "plat",
+      "label": "Platforms:"
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "optionsByRow": {
+        "os": [
           "SLES only",
           "Windows Server only",
           "SLES and Windows Server"
         ],
-        "correctByRow": {
-          "r": "SLES and Windows Server"
-        }
-      },
-      {
-        "id": "plat",
-        "label": "Platforms:",
-        "options": [
+        "plat": [
           "Azure virtual machines only",
           "Azure virtual machines and Hyper-V virtual machines only",
           "Azure Arc-enabled servers and Azure virtual machines only",
           "Azure virtual machines, Hyper-V virtual machines, and Azure Arc-enabled servers"
-        ],
-        "correctByRow": {
-          "r": "Azure Arc-enabled servers and Azure virtual machines only"
-        }
+        ]
+      },
+      "correctByRow": {
+        "os": "SLES and Windows Server",
+        "plat": "Azure Arc-enabled servers and Azure virtual machines only"
       }
-    ]
-  },
-  {
+    }
+  ]
+},
+{
     "id": "az500-q400",
     "prompt": "NO.400 You have an Azure subscription that contains the resources shown in the following table.\n351\nIT Certification Guaranteed, The Easy Way!\nYou plan to use service endpoints and service endpoint policies.\nWhich resources can be accessed by using a service endpoint, and which resources support service\nendpoint policies? To answer, select the appropriate options in the answer area.\nNOTE; Each correct selection is worth one point.",
     "image": "",
@@ -9912,15 +9893,21 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       {
         "id": "resp",
         "label": "Resposta",
-        "options": [
+      "optionsByRow": {
+        "access": [
           "storage1 and WebApp1 only",
           "VM1 and storage1 only",
           "VM1 and WebApp1 only",
-          "VM1, storage1, and WebApp1 only",
+          "VM1, storage1, and WebApp1 only"
+        ],
+        "policy": [
           "storage1 only",
           "VM1 only",
-          "WebApp1 only"
-        ],
+          "WebApp1 only",
+          "VM1 and storage1 only",
+          "storage1 and WebApp1 only"
+        ]
+      },
         "correctByRow": {
           "access": "storage1 and WebApp1 only",
           "policy": "storage1 only"
@@ -9942,89 +9929,89 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "allowAnswerShuffle": true
   },
   {
-    "id": "az500-q402",
-    "prompt": "NO.402 You have an Azure subscription that is linked to a Microsoft Entra tenant. The tenant uses\nMicrosoft Entra ID Protection.\nYou have 2,000 users that are each assigned a Microsoft Entra ID P2 license.\nYou plan to use Azure Monitor to generate an alert when a workload identity that is using leaked\ncredentials is detected.\nYou need to configure the Diagnostic setting to support the planned alert. The solution must\nminimize administrative effort.\nWhich log category should you collect, and to which destination should you send the logs? To answer,\nselect the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "r1",
-        "label": "Diagnostic setting"
-      }
-    ],
-    "columns": [
-      {
-        "id": "logCategory",
-        "label": "Log category",
-        "options": [
+  "id": "az500-q402",
+  "prompt": "NO.402 You have an Azure subscription that is linked to a Microsoft Entra tenant. The tenant uses\nMicrosoft Entra ID Protection.\nYou have 2,000 users that are each assigned a Microsoft Entra ID P2 license.\nYou plan to use Azure Monitor to generate an alert when a workload identity that is using leaked\ncredentials is detected.\nYou need to configure the Diagnostic setting to support the planned alert. The solution must\nminimize administrative effort.\nWhich log category should you collect, and to which destination should you send the logs? To answer,\nselect the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "logCategory",
+      "label": "Log category"
+    },
+    {
+      "id": "destination",
+      "label": "Destination"
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "optionsByRow": {
+        "logCategory": [
           "RiskyServicePrincipals",
           "RiskyUsers",
           "ServicePrincipalRiskEvents",
           "UserRiskEvents"
         ],
-        "correctByRow": {
-          "r1": "ServicePrincipalRiskEvents"
-        }
-      },
-      {
-        "id": "destination",
-        "label": "Destination",
-        "options": [
+        "destination": [
           "A Log Analytics workspace",
           "An Azure event hub",
           "A storage account"
-        ],
-        "correctByRow": {
-          "r1": "A Log Analytics workspace"
-        }
+        ]
+      },
+      "correctByRow": {
+        "logCategory": "ServicePrincipalRiskEvents",
+        "destination": "A Log Analytics workspace"
       }
-    ]
-  },
-  {
-    "id": "az500-q403",
-    "prompt": "NO.403 You have an Azure subscription named Sub1 that contains the resources shown in the\nfollowing table.\n\nYou need to enable Microsoft Defender for Cloud for storage accounts and virtual machines.\nAt which levels can you enable Defender for Cloud for the storage accounts and the virtual machines?\nTo answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "r1",
-        "label": "Defender for Cloud levels"
-      }
-    ],
-    "columns": [
-      {
-        "id": "storage",
-        "label": "Storage accounts",
-        "options": [
+    }
+  ]
+},
+{
+  "id": "az500-q403",
+  "prompt": "NO.403 You have an Azure subscription named Sub1 that contains the resources shown in the\nfollowing table.\n\nYou need to enable Microsoft Defender for Cloud for storage accounts and virtual machines.\nAt which levels can you enable Defender for Cloud for the storage accounts and the virtual machines?\nTo answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "storage",
+      "label": "Storage accounts"
+    },
+    {
+      "id": "vm",
+      "label": "Virtual machines"
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "optionsByRow": {
+        "storage": [
           "Subscription only",
           "Workspace only",
           "Storage account only",
           "Subscription or storage account only",
           "Subscription, workspace, or storage account"
         ],
-        "correctByRow": {
-          "r1": "Subscription or storage account only"
-        }
-      },
-      {
-        "id": "vm",
-        "label": "Virtual machines",
-        "options": [
+        "vm": [
           "Subscription only",
           "Workspace only",
           "Virtual machine only",
           "Subscription or virtual machine only",
           "Subscription, workspace, or virtual machine"
-        ],
-        "correctByRow": {
-          "r1": "Subscription, workspace, or virtual machine"
-        }
+        ]
+      },
+      "correctByRow": {
+        "storage": "Subscription or storage account only",
+        "vm": "Subscription, workspace, or virtual machine"
       }
-    ]
-  },
-  {
+    }
+  ]
+},
+{
     "id": "az500-q404",
     "prompt": "NO.404 You have an Azure subscription that uses Microsoft Defender for Cloud.\nYou have an Amazon Web Services (AWS) account.\nYou need to add the AWS account to Defender for Cloud.\nWhat should you do first?",
     "image": "",
@@ -10489,7 +10476,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       "GraphQL",
       "a Kusto query"
     ],
-    "correctAnswer": "a Kusto query",
+    "correctAnswer": "GraphQL",
     "allowAnswerShuffle": true
   },
   {
@@ -10513,17 +10500,21 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
         "id": "resp",
         "label": "Resposta",
         "inputType": "select",
-        "options": [
+      "optionsByRow": {
+        "up": [
           "User1 only",
           "User1 and User4 only",
           "User1, User3, and User4",
-          "User1, User2, User3, and User4",
+          "User1, User2, User3, and User4"
+        ],
+        "down": [
           "User2 only",
           "User1 and User2 only",
           "User2 and User4 only",
           "User1, User2, and User4",
           "User1, User2, User3, and User4"
-        ],
+        ]
+      },
         "correctByRow": {
           "up": "User1 and User4 only",
           "down": "User1, User2, and User4"
@@ -10579,47 +10570,47 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "allowAnswerShuffle": true
   },
   {
-    "id": "az500-q430",
-    "prompt": "NO.430 Your company has an Azure subscription named Subscription1 that contains the users shown in the following table.\nThe company is sold to a new owner.\nThe company needs to transfer ownership of Subscription1.\nWhich user can transfer the ownership and which tool should the user use? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "r",
-        "label": "Resposta"
-      }
-    ],
-    "columns": [
-      {
-        "id": "user",
-        "label": "User",
-        "options": [
+  "id": "az500-q430",
+  "prompt": "NO.430 Your company has an Azure subscription named Subscription1 that contains the users shown in the following table.\nThe company is sold to a new owner.\nThe company needs to transfer ownership of Subscription1.\nWhich user can transfer the ownership and which tool should the user use? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "user",
+      "label": "User"
+    },
+    {
+      "id": "tool",
+      "label": "Tool"
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "optionsByRow": {
+        "user": [
           "User1",
           "User2",
           "User3",
           "User4"
         ],
-        "correctByRow": {
-          "r": "User2"
-        }
-      },
-      {
-        "id": "tool",
-        "label": "Tool",
-        "options": [
+        "tool": [
           "Azure Account Center",
           "Azure Cloud Shell",
           "Azure PowerShell",
           "Azure Security Center"
-        ],
-        "correctByRow": {
-          "r": "Azure Account Center"
-        }
+        ]
+      },
+      "correctByRow": {
+        "user": "User2",
+        "tool": "Azure Account Center"
       }
-    ]
-  },
-  {
+    }
+  ]
+},
+{
     "id": "az500-q431",
     "prompt": "NO.431 You have an Azure Active Directory (Azure AD) tenant that contains two administrative units named AU1 and AU2.\nUsers are assigned to the administrative units as shown in the following table.\n\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nNOTE: Each correct selection is worth one point.",
     "image": "",
@@ -10900,46 +10891,46 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     }
   },
   {
-    "id": "az500-q446",
-    "prompt": "NO.446 You have an Azure subscription that contains the custom roles shown in the following table.\n\nIn the Azure portal, you plan to create new custom roles by cloning existing roles. The new roles will\nbe configured as shown in the following table.\n\nWhich roles can you clone to create each new role? To answer, select the appropriate options in the\nanswer area.\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "r",
-        "label": "Resposta"
-      }
-    ],
-    "columns": [
-      {
-        "id": "role3",
-        "label": "Role3:",
-        "options": [
+  "id": "az500-q446",
+  "prompt": "NO.446 You have an Azure subscription that contains the custom roles shown in the following table.\n\nIn the Azure portal, you plan to create new custom roles by cloning existing roles. The new roles will\nbe configured as shown in the following table.\n\nWhich roles can you clone to create each new role? To answer, select the appropriate options in the\nanswer area.\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "role3",
+      "label": "Role3:"
+    },
+    {
+      "id": "role4",
+      "label": "Role4:"
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "optionsByRow": {
+        "role3": [
           "Role1 only",
           "Built-in Azure AD roles only",
           "Role1 and built-in Azure AD roles only",
           "Role1, built-in Azure AD roles, and built-in Azure subscription roles"
         ],
-        "correctByRow": {
-          "r": "Role1 only"
-        }
-      },
-      {
-        "id": "role4",
-        "label": "Role4:",
-        "options": [
+        "role4": [
           "Role2 only",
           "Role2 and built-in Azure subscription roles only",
           "Role2, built-in Azure subscription roles, and built-in Azure AD roles"
-        ],
-        "correctByRow": {
-          "r": "Role2 and built-in Azure subscription roles only"
-        }
+        ]
+      },
+      "correctByRow": {
+        "role3": "Role1 only",
+        "role4": "Role2 and built-in Azure subscription roles only"
       }
-    ]
-  },
-  {
+    }
+  ]
+},
+{
     "id": "az500-q447",
     "prompt": "NO.447 You have an Azure subscription that contains an Azure key vault named Vault1 and a virtual\nmachine named VM1.\nVM1 is connected to a virtual network named VNet1.\nYou need to allow access to Vault1 only from VM1.\nWhat should you do in the Networking settings of Vault1?",
     "image": "",
@@ -10953,44 +10944,44 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "allowAnswerShuffle": true
   },
   {
-    "id": "az500-q448",
-    "prompt": "NO.448 You have an Azure App Service web app named App1 as shown in the exhibit.\nSubnet2 contains a virtual machine named VM1.\nUse the drop-down menus to select the answer choice that completes each statement based on the\ninformation presented in the graphic.\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "r",
-        "label": "Resposta"
-      }
-    ],
-    "columns": [
-      {
-        "id": "deny",
-        "label": "To deny outbound access, configure [answer choice] on Subnet2.",
-        "options": [
+  "id": "az500-q448",
+  "prompt": "NO.448 You have an Azure App Service web app named App1 as shown in the exhibit.\nSubnet2 contains a virtual machine named VM1.\nUse the drop-down menus to select the answer choice that completes each statement based on the\ninformation presented in the graphic.\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "deny",
+      "label": "To deny outbound access, configure [answer choice] on Subnet2."
+    },
+    {
+      "id": "connect",
+      "label": "To connect to a virtual network in a different region, configure [answer choice]."
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "optionsByRow": {
+        "deny": [
           "a network security group (NSG)",
           "a service endpoint",
           "an application security group"
         ],
-        "correctByRow": {
-          "r": "a network security group (NSG)"
-        }
-      },
-      {
-        "id": "connect",
-        "label": "To connect to a virtual network in a different region, configure [answer choice].",
-        "options": [
+        "connect": [
           "Gateway-required VNet integrations",
           "an Azure NAT Gateway integration",
           "Regional VNet integrations"
-        ],
-        "correctByRow": {
-          "r": "Gateway-required VNet integrations"
-        }
+        ]
+      },
+      "correctByRow": {
+        "deny": "a network security group (NSG)",
+        "connect": "Gateway-required VNet integrations"
       }
-    ]
-  },
+    }
+  ]
+},
   {
     "id": "az500-q449",
     "prompt": "NO.449 You have an Azure subscription.\nYou need to deploy an Azure virtual WAN to meet the following requirements:\n* Create three secured virtual hubs located in the East US, West US, and North Europe Azure regions.\n* Ensure that security rules sync between the regions.\nWhat should you use?",
