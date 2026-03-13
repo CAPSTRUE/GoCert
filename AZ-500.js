@@ -651,7 +651,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
           "3"
         ],
         "correctByRow": {
-          "r": "1"
+          "r": "0"
         }
       },
       {
@@ -699,14 +699,14 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
         "id": "create_rg2",
         "label": "Create RG2",
         "options": [
-          "Admin1 only",
+          "Admin3 only",
           "Admin2 and Admin3 only",
           "Admin3 and Admin4 only",
           "Admin2, Admin3, and Admin4 only",
           "Admin1, Admin2, Admin3, and Admin4"
         ],
         "correctByRow": {
-          "r": "Admin1 only"
+          "r": "Admin3 only"
         }
       },
       {
@@ -2482,11 +2482,12 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       "Self-service",
       "Conditional Access",
       "Permissions",
-      "Token encryption"
+      "Token encryption",
+      "Sign-ins",
+      "Usage & insights"
     ],
     "correctAnswer": [
       "Roles and administrators (Preview)",
-      "Application proxy",
       "Self-service"
     ],
     "allowAnswerShuffle": false
@@ -2746,40 +2747,45 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "id": "az500-q120",
     "prompt": "NO.120 You have an Azure subscription that has a managed identity named identity and is linked to an Azure Active Directory (Azure AD) tenant. The tenant contains the resources shown in the following table.\n\nWhich resources can be added to AU1 and AU2? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
     "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "au1",
-        "label": "AU1:"
-      },
-      {
-        "id": "au2",
-        "label": "AU2:"
-      }
-    ],
-    "columns": [
-      {
-        "id": "resp",
-        "label": "Resposta",
-        "options": [
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "au1",
+      "label": "AU1:"
+    },
+    {
+      "id": "au2",
+      "label": "AU2:"
+    }
+  ],
+  "columns": [
+    {
+      "id": "resp",
+      "label": "Resposta",
+      "optionsByRow": {
+        "au1": [
           "AU2 only",
           "Group2 only",
           "Identity1 only",
           "AU2 and Group2 only",
-          "Group2 and Identity1 only",
+          "Group2 and Identity1 only"
+        ],
+        "au2": [
+          "Identity1 only",
           "AU1 and Identity1 only",
           "Group1 and Group2 only",
           "AU1, Group2 and Identity1 only",
           "Group1, Group2 and User1 only"
-        ],
-        "correctByRow": {
-          "au1": "Group2 and Identity1 only",
-          "au2": "Group1, Group2 and User1 only"
-        }
+        ]
+      },
+      "correctByRow": {
+        "au1": "Group2 and Identity1 only",
+        "au2": "Group1, Group2 and User1 only"
       }
-    ]
-  },
+    }
+  ]
+},
   {
     "id": "az500-q121",
     "prompt": "NO.121 You have a Microsoft Entra tenant named contoso.com.\nYou collaborate with a partner organization that has a Microsoft Entra tenant named fabrikam.com.\nFabrikam.\ncom has multi-factor authentication (MFA) enabled for all users.\nContoso.com has the Cross-tenant access settings configured as shown in the Cross-tenant access\nsettings exhibit. (Click the Cross-tenant access settings:\n\nContoso.com has the External collaboration settings configured as shown in the External\ncollaboration settings exhibit. (Click the External collaboration settings tab.)\nYou create a Conditional Access policy that has the following settings:\n* Name: CAPolicy1\n* Assignments\no Guest or external users: B2B collaboration guest users\no Target resources\n# Include: All cloud apps o Access controls\n# Grant access\n\n# Require device to be marked as compliant\n# Require multi-factor authentication\n# Enable policy: On\nFor each of the following statements, select Yes if the statement is true, otherwise select No.\nNOTE: Each correct section is worth one point.",
@@ -3990,14 +3996,20 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       {
         "id": "state",
         "label": "Resposta",
-        "options": [
+      "optionsByRow": {
+        "a1": [
           "cannot be changed",
           "can be changed to Closed only",
           "can be changed to New only",
-          "can be changed to New or Closed",
-          "can be changed to Acknowledged only",
-          "can be changed to New or Acknowledged"
+          "can be changed to New or Closed"
         ],
+        "a2": [
+          "cannot be changed",
+          "can be changed to Acknowledged only",
+          "can be changed to New only",
+          "can be changed to New or Acknowledged"
+        ]
+      },
         "correctByRow": {
           "a1": "can be changed to Closed only",
           "a2": "can be changed to New or Acknowledged"
@@ -4061,16 +4073,20 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       {
         "id": "resp",
         "label": "Resposta",
-        "options": [
+      "optionsByRow": {
+        "sub1": [
           "An Azure Log Analytics agent on a Linux virtual machine",
           "A Data Factory pipeline",
           "An Event Hubs namespace",
-          "An Azure Service Bus queue",
+          "An Azure Service Bus queue"
+        ],
+        "sub2": [
           "A new Azure Log Analytics workspace",
           "A new Azure Sentinel data connector",
           "A new Azure Sentinel playbook",
           "A new Event Grid resource provider"
-        ],
+        ]
+      },
         "correctByRow": {
           "sub1": "An Event Hubs namespace",
           "sub2": "A new Azure Log Analytics workspace"
@@ -4127,7 +4143,15 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
         "label": "Cloud apps or actions"
       },
       {
+        "id": "it1_2",
+        "label": "Cloud apps or actions"
+      },
+      {
         "id": "it2",
+        "label": "Conditions"
+      },
+      {
+        "id": "it2_2",
         "label": "Conditions"
       },
       {
@@ -4135,7 +4159,15 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
         "label": "Grant"
       },
       {
+        "id": "it3_2",
+        "label": "Grant"
+      },
+      {
         "id": "it4",
+        "label": "Session"
+      },
+      {
+        "id": "it4_2",
         "label": "Session"
       }
     ],
@@ -4151,7 +4183,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     ],
     "correctByTarget": {
       "r1": "it2",
-      "r2": "it2"
+      "r2": "it2_2"
     }
   },
   {
@@ -4510,19 +4542,19 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "items": [
       {
         "id": "it1",
-        "text": "1900-01-01"
+        "label": "1900-01-01"
       },
       {
         "id": "it2",
-        "text": "1900-01-01 00:00:00.0000"
+        "label": "1900-01-01 00:00:00.0000"
       },
       {
         "id": "it3",
-        "text": "2010-XX-XX"
+        "label": "2010-XX-XX"
       },
       {
         "id": "it4",
-        "text": "XXXX"
+        "label": "XXXX"
       }
     ],
     "targets": [
@@ -4575,23 +4607,23 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "items": [
       {
         "id": "it1",
-        "text": "Rule1"
+        "label": "Rule1"
       },
       {
         "id": "it2",
-        "text": "Rule2"
+        "label": "Rule2"
       },
       {
         "id": "it3",
-        "text": "Rule3"
+        "label": "Rule3"
       },
       {
         "id": "it4",
-        "text": "Rule4"
+        "label": "Rule4"
       },
       {
         "id": "it5",
-        "text": "Rule5"
+        "label": "Rule5"
       }
     ],
     "targets": [
@@ -4647,23 +4679,23 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "items": [
       {
         "id": "it1",
-        "text": "Discover privileged roles."
+        "label": "Discover privileged roles."
       },
       {
         "id": "it2",
-        "text": "Sign up PIM for Azure AD roles."
+        "label": "Sign up PIM for Azure AD roles."
       },
       {
         "id": "it3",
-        "text": "Consent to PIM."
+        "label": "Consent to PIM."
       },
       {
         "id": "it4",
-        "text": "Discover resources."
+        "label": "Discover resources."
       },
       {
         "id": "it5",
-        "text": "Verify your identity by using multi-factor authentication (MFA)."
+        "label": "Verify your identity by using multi-factor authentication (MFA)."
       }
     ],
     "targets": [
@@ -4708,27 +4740,27 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "items": [
       {
         "id": "it1",
-        "text": "Create an access review program."
+        "label": "Create an access review program."
       },
       {
         "id": "it2",
-        "text": "Set Reviewers to Selected users."
+        "label": "Set Reviewers to Selected users."
       },
       {
         "id": "it3",
-        "text": "Create an access review audit."
+        "label": "Create an access review audit."
       },
       {
         "id": "it4",
-        "text": "Create an access review control."
+        "label": "Create an access review control."
       },
       {
         "id": "it5",
-        "text": "Set Reviewers to Group owners."
+        "label": "Set Reviewers to Group owners."
       },
       {
         "id": "it6",
-        "text": "Set Reviewers to Members."
+        "label": "Set Reviewers to Members."
       }
     ],
     "targets": [
@@ -4906,27 +4938,27 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "items": [
       {
         "id": "it1",
-        "text": "A data connector for Security Center"
+        "label": "A data connector for Security Center"
       },
       {
         "id": "it2",
-        "text": "A data connector for the firewall software"
+        "label": "A data connector for the firewall software"
       },
       {
         "id": "it3",
-        "text": "A playbook"
+        "label": "A playbook"
       },
       {
         "id": "it4",
-        "text": "A rule"
+        "label": "A rule"
       },
       {
         "id": "it5",
-        "text": "A Security Events connector"
+        "label": "A Security Events connector"
       },
       {
         "id": "it6",
-        "text": "A workbook"
+        "label": "A workbook"
       }
     ],
     "targets": [
@@ -4957,9 +4989,9 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       "Active Directory - Password",
       "Active Directory - Universal with MFA support",
       "SQL Server Authentication",
-      "Active Directory - Integrated IT Certification Guaranteed, The Easy Way! 183"
+      "Active Directory - Integrated"
     ],
-    "correctAnswer": "Active Directory - Integrated IT Certification Guaranteed, The Easy Way! 183",
+    "correctAnswer": "Active Directory - Integrated",
     "allowAnswerShuffle": true
   },
   {
@@ -5096,7 +5128,10 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       "the Network Contributor role for RG1.",
       "the Virtual Machine Contributor role for RG1."
     ],
-    "correctAnswer": "a custom RBAC role for RG2",
+    "correctAnswer": [
+    "a custom RBAC role for RG2",
+    "the Virtual Machine Contributor role for RG1."
+    ],
     "allowAnswerShuffle": true
   },
   {
@@ -5108,19 +5143,35 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "items": [
       {
         "id": "it1",
-        "text": "Basic"
+        "label": "Basic"
       },
       {
         "id": "it2",
-        "text": "VpnGw1"
+        "label": "Basic"
       },
       {
         "id": "it3",
-        "text": "VpnGw2"
+        "label": "VpnGw1"
       },
       {
         "id": "it4",
-        "text": "VpnGw3"
+        "label": "VpnGw1"
+      },
+      {
+        "id": "it5",
+        "label": "VpnGw2"
+      },
+      {
+        "id": "it6",
+        "label": "VpnGw2"
+      },
+      {
+        "id": "it7",
+        "label": "VpnGw3",
+      },
+      {
+        "id": "it8",
+        "label": "VpnGw3"
       }
     ],
     "targets": [
@@ -5134,8 +5185,8 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       }
     ],
     "correctByTarget": {
-      "vnet1": "it2",
-      "vnet2": "it2"
+      "vnet1": "it3",
+      "vnet2": "it4"
     }
   },
   {
@@ -5246,19 +5297,22 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       {
         "id": "ac",
         "label": "",
-        "options": [
+      "optionsByRow": {
+        "k": [
           "Only User1",
           "Only User2",
-          "Only User3",
-          "Only User4",
-          "Only User1 and User3",
           "Only User1 and User4",
-          "Only User1 and User2",
-          "Only User2 and User3",
-          "Only User2 and User4",
-          "Only User3 and User4",
+          "Only User1, User2, and User4",
           "User1, User2, User3, and User4"
         ],
+        "s": [
+          "Only User3",
+          "Only User1 and User3",
+          "Only User3 and User4",
+          "Only User1, User3, and User4",
+          "User1, User2, User3, and User4"
+        ]
+      },
         "correctByRow": {
           "k": "Only User1 and User4",
           "s": "Only User1 and User3"
@@ -5336,23 +5390,23 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "items": [
       {
         "id": "it1",
-        "text": "Configure secrets for the Azure key vault."
+        "label": "Configure secrets for the Azure key vault."
       },
       {
         "id": "it2",
-        "text": "Create an Azure key vault."
+        "label": "Create an Azure key vault."
       },
       {
         "id": "it3",
-        "text": "Run Set-AzureRmStorageAccount."
+        "label": "Run Set-AzureRmStorageAccount."
       },
       {
         "id": "it4",
-        "text": "Configure access policies for the Azure key vault."
+        "label": "Configure access policies for the Azure key vault."
       },
       {
         "id": "it5",
-        "text": "Run Set-AzureRmVmDiskEncryptionExtension."
+        "label": "Run Set-AzureRmVmDiskEncryptionExtension."
       }
     ],
     "targets": [
@@ -5376,12 +5430,13 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     }
   },
   {
+
     "id": "az500-q222",
     "prompt": "NO.222 You have an Azure subscription that contains an Azure Data Lake Storage account named\nsa1.\nYou plan to deploy an app named App1 that will access sa1 and perform operations, including Read.\nList, Create Directory, and Delete Directory.\nYou need to ensure that App1 can connect securely to sa1 by using a private endpoint What is the\nminimum number of private endpoints required for sa1?",
     "image": "",
     "answers": [
       "1",
-      "2 IT Certification Guaranteed, The Easy Way! 197",
+      "2",
       "3",
       "4",
       "5"
@@ -5444,23 +5499,23 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "items": [
       {
         "id": "it1",
-        "text": "Add an identity provider."
+        "label": "Add an identity provider."
       },
       {
         "id": "it2",
-        "text": "Configure an authentication methods policy."
+        "label": "Configure an authentication methods policy."
       },
       {
         "id": "it3",
-        "text": "Create an Azure key vault."
+        "label": "Create an Azure key vault."
       },
       {
         "id": "it4",
-        "text": "Configure the Verified ID service."
+        "label": "Configure the Verified ID service."
       },
       {
         "id": "it5",
-        "text": "Register App1 in Azure AD and grant permissions."
+        "label": "Register App1 in Azure AD and grant permissions."
       }
     ],
     "targets": [
@@ -5518,7 +5573,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       "Servers",
       "App Service",
       "APIs",
-      "Resource Manager IT Certification Guaranteed, The Easy Way! 202"
+      "Resource Manager"
     ],
     "correctAnswer": "Servers",
     "allowAnswerShuffle": true
@@ -5558,31 +5613,31 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "items": [
       {
         "id": "it1",
-        "text": "Publish an Azure Blueprints version"
+        "label": "Publish an Azure Blueprints version"
       },
       {
         "id": "it2",
-        "text": "Assign an Azure blueprint."
+        "label": "Assign an Azure blueprint."
       },
       {
         "id": "it3",
-        "text": "Create a policy assignment."
+        "label": "Create a policy assignment."
       },
       {
         "id": "it4",
-        "text": "Create a custom role-based access control (RBAC) role."
+        "label": "Create a custom role-based access control (RBAC) role."
       },
       {
         "id": "it5",
-        "text": "Create a dedicated management subscription."
+        "label": "Create a dedicated management subscription."
       },
       {
         "id": "it6",
-        "text": "Create an Azure Blueprints definition."
+        "label": "Create an Azure Blueprints definition."
       },
       {
         "id": "it7",
-        "text": "Create an initiative assignment."
+        "label": "Create an initiative assignment."
       }
     ],
     "targets": [
@@ -5619,42 +5674,48 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "allowAnswerShuffle": true
   },
   {
-    "id": "az500-q232",
-    "prompt": "NO.232 You have the role assignments shown in the exhibit.\nUse the drop-down menus to select the answer choice that completes each statement based on the information presented.\nNOTE: Each correct selection is worth one point.",
-    "image": "",
-    "type": "dropdownMatrix",
-    "allowAnswerShuffle": false,
-    "rows": [
-      {
-        "id": "d",
-        "label": "[answer choice] can delete VM1."
-      },
-      {
-        "id": "rg",
-        "label": "[answer choice] can create new resource groups."
-      }
-    ],
-    "columns": [
-      {
-        "id": "ac",
-        "label": "",
-        "options": [
+  "id": "az500-q232",
+  "prompt": "NO.232 You have the role assignments shown in the exhibit.\nUse the drop-down menus to select the answer choice that completes each statement based on the information presented.\nNOTE: Each correct selection is worth one point.",
+  "image": "",
+  "type": "dropdownMatrix",
+  "allowAnswerShuffle": false,
+  "rows": [
+    {
+      "id": "d",
+      "label": "[answer choice] can delete VM1."
+    },
+    {
+      "id": "rg",
+      "label": "[answer choice] can create new resource groups."
+    }
+  ],
+  "columns": [
+    {
+      "id": "ac",
+      "label": "",
+      "optionsByRow": {
+        "d": [
           "Admin1 only",
-          "Admin2 only",
-          "Admin3 only",
-          "Admin4 only",
           "Only Admin1 and Admin2",
           "Only Admin1 and Admin3",
           "Only Admin1 and Admin4",
           "Admin1, Admin2, Admin3, and Admin4"
         ],
-        "correctByRow": {
-          "d": "Admin1 only",
-          "rg": "Admin2 only"
-        }
+        "rg": [
+          "Admin1 only",
+          "Admin2 only",
+          "Admin3 only",
+          "Only Admin1 and Admin3",
+          "Admin1, Admin2, Admin3, and Admin4"
+        ]
+      },
+      "correctByRow": {
+        "d": "Only Admin1 and Admin2",
+        "rg": "Admin3 only"
       }
-    ]
-  },
+    }
+  ]
+},
   {
     "id": "az500-q233",
     "prompt": "NO.233 You have an Azure subscription named Sub1. Sub1 contains a virtual network named VNet1\nthat contains one subnet named Subnet1.\nYou create a service endpoint for Subnet1.\nSubnet1 contains an Azure virtual machine named VM1 that runs Ubuntu Server 18.04.\nYou need to deploy Docker containers to VM1. The containers must be able to access Azure Storage\nresources and Azure SQL databases by using the service endpoint.",
@@ -5685,32 +5746,28 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     ],
     "columns": [
       {
-        "id": "osOpt",
+        "id": "os",
         "label": "",
-        "options": [
+      "optionsByRow": {
+        "os": [
           "SLES only",
           "Windows Server only",
           "SLES and Windows Server"
         ],
-        "correctByRow": {
-          "os": "Windows Server only"
-        }
-      },
-      {
-        "id": "pfOpt",
-        "label": "",
-        "options": [
+        "pf": [
           "Azure virtual machines only",
           "Azure virtual machines and Hyper-V virtual machines only",
           "Azure Arc-enabled servers and Azure virtual machines only",
           "Azure virtual machines, Hyper-V virtual machines, and Azure Arc-enabled servers"
-        ],
-        "correctByRow": {
-          "pf": "Azure virtual machines only"
-        }
+        ]
+      },
+      "correctByRow": {
+        "os": "Windows Server only",
+        "rg": "Azure virtual machines only"
       }
-    ]
-  },
+    }
+  ]
+},
   {
     "id": "az500-q235",
     "prompt": "NO.235 On Monday, you configure an email notification in Microsoft Defender for Cloud to notify user1@contoso.com about alerts that have a severity level of Low, Medium, or High.\nOn Tuesday, Microsoft Defender for Cloud generates the security alerts shown in the table.\nHow many email notifications will user1@contoso.com receive on Tuesday? To answer, select the appropriate options in the answer area.\nNOTE: Each correct selection is worth one point.",
@@ -5731,27 +5788,23 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
       {
         "id": "n1",
         "label": "",
-        "options": [
+      "optionsByRow": {
+        "rdp": [
           "1",
           "2",
           "3",
           "4"
         ],
-        "correctByRow": {
-          "rdp": "4"
-        }
-      },
-      {
-        "id": "n2",
-        "label": "",
-        "options": [
+        "total": [
           "3",
           "4",
           "7",
           "9",
           "11"
-        ],
-        "correctByRow": {
+        ]
+      },
+      "correctByRow": {
+          "rdp": "4",
           "total": "7"
         }
       }
@@ -6035,10 +6088,12 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "prompt": "NO.247 You have an Azure Active Directory (Azure AD) tenant that contains a group named Groupt\\nYou need to ensure that the members of Groupt sign in by using passwordless authentication What\\nshould you do?\\n‘A. Configure the Microsoft Authenticator authentication method policy.",
     "image": "",
     "answers": [
+      "Configure the Microsoft Authenticator authentication method policy.",
       "Configure the certificate-based authentication (CBA) policy.",
+      "Configure the sign-in risk policy.",
       "Create a Conditional Access policy."
     ],
-    "correctAnswer": "Configure the certificate-based authentication (CBA) policy.",
+    "correctAnswer": "Configure the Microsoft Authenticator authentication method policy.",
     "allowAnswerShuffle": true
   },
   {
@@ -6082,10 +6137,10 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "prompt": "NO.249 You need to implement the function apps to meet the technical requirements.\\nWhich apps should you include in the implementation?",
     "image": "",
     "answers": [
-      "Fat and Fa2 only",
-      "Fa and Fa only",
-      "Fai and Fa3 only",
-      "Fat, Fa2, and Fa3"
+      "Fa1 and Fa2 only",
+      "Fa2 and Fa3 only",
+      "Fa1 and Fa3 only",
+      "Fa1, Fa2, and Fa3"
     ],
     "correctAnswer": "Fat, Fa2, and Fa3",
     "allowAnswerShuffle": true
@@ -6738,7 +6793,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q276",
-    "prompt": "You have an Azure subscription that contains the virtual machines shown in the following\ntable.\nSubnet1 and Subnet2 have a network security group {NSG). The NSG has an outbound rule that has\nthe following configurations:\n* Port; Any\n* Source: Any\n* Priority: 100\n* Action: Deny\n* Protocol: Any\n* Destination: Storage\nThe subscription contains a storage account named storage1.\nYou create a private endpoint named Private1 that has the following settings:\n* Resource type: Microsoft.Storage/storageAccounts\n* Resource: storage1\n* Target sub-resource: blob\n* Virtual network: VNet1\n* Subnet: Subnet1\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nNOTE: Each correct selection is worth one point.\nAnswer:",
+    "prompt": "NO.276 You have an Azure subscription that contains the virtual machines shown in the following\ntable.\nSubnet1 and Subnet2 have a network security group {NSG). The NSG has an outbound rule that has\nthe following configurations:\n* Port; Any\n* Source: Any\n* Priority: 100\n* Action: Deny\n* Protocol: Any\n* Destination: Storage\nThe subscription contains a storage account named storage1.\nYou create a private endpoint named Private1 that has the following settings:\n* Resource type: Microsoft.Storage/storageAccounts\n* Resource: storage1\n* Target sub-resource: blob\n* Virtual network: VNet1\n* Subnet: Subnet1\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nNOTE: Each correct selection is worth one point.\nAnswer:",
     "image": "",
     "type": "dropdownMatrix",
     "allowAnswerShuffle": false,
@@ -6774,7 +6829,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q277",
-    "prompt": "You have an Azure Active Directory (Azure AD) tenant named Contoso.com and an Azure\nService (AKS) cluster AKS1.\nYou discover that AKS1 cannot be accessed by using accounts from Contoso.com You need to ensure\nAKS1 can be accessed by using accounts from Contoso.com The solution must minimize\nadministrative effort.\nWhat should you do first?\nA. From Azure recreate AKS1,\nB. From AKS1, upgrade the version of Kubermetes.\nC. From Azure AD, implement Azure AD Premium P2.\nD. From Azure AD, configure the User settings",
+    "prompt": "NO.277 You have an Azure Active Directory (Azure AD) tenant named Contoso.com and an Azure\nService (AKS) cluster AKS1.\nYou discover that AKS1 cannot be accessed by using accounts from Contoso.com You need to ensure\nAKS1 can be accessed by using accounts from Contoso.com The solution must minimize\nadministrative effort.\nWhat should you do first?\nA. From Azure recreate AKS1,\nB. From AKS1, upgrade the version of Kubermetes.\nC. From Azure AD, implement Azure AD Premium P2.\nD. From Azure AD, configure the User settings",
     "image": "",
     "answers": [
       "From Azure recreate AKS1,",
@@ -6787,7 +6842,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q278",
-    "prompt": "Your on-premises network contains an Active Directory Domain Services (AD DS) domain\nand the devices shown in the following table.\nYou have a hybrid Microsoft Entra tenant that contains a synced user named User1.\nYou have an Azure subscription that contains the Azure Files shares shown in the following table.\nUsed is assigned the Storage File Data SMB Share Contributor role tor storage1 and storage2.\nThe Security settings for Share! are configured as shown in the following exhibit.\nFor each of the following statements, select Yes if the statement is true. Otherwise. Select No.\nNOTE: Each correct selection is worth one point.\nAnswer:",
+    "prompt": "NO.278 Your on-premises network contains an Active Directory Domain Services (AD DS) domain\nand the devices shown in the following table.\nYou have a hybrid Microsoft Entra tenant that contains a synced user named User1.\nYou have an Azure subscription that contains the Azure Files shares shown in the following table.\nUsed is assigned the Storage File Data SMB Share Contributor role tor storage1 and storage2.\nThe Security settings for Share! are configured as shown in the following exhibit.\nFor each of the following statements, select Yes if the statement is true. Otherwise. Select No.\nNOTE: Each correct selection is worth one point.\nAnswer:",
     "image": "",
     "type": "dropdownMatrix",
     "allowAnswerShuffle": false,
@@ -6823,7 +6878,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q279",
-    "prompt": "You have an Azure subscription that contains a storage account named contoso2023. You\nneed to perform the following tasks:\n* Verify that identity-based authentication over SMB is enabled.\n* Only grant users access to contoso2023 in the year 2023.\nWhich two settings should you use? To answer, select the appropriate settings in the answer area\nNOTE: Each correct selection is worth one point.\nIT Certification Guaranteed, The Easy Way!\n246",
+    "prompt": "NO.279 You have an Azure subscription that contains a storage account named contoso2023. You\nneed to perform the following tasks:\n* Verify that identity-based authentication over SMB is enabled.\n* Only grant users access to contoso2023 in the year 2023.\nWhich two settings should you use? To answer, select the appropriate settings in the answer area\nNOTE: Each correct selection is worth one point.\nIT Certification Guaranteed, The Easy Way!\n246",
     "image": "",
     "type": "dropdownMatrix",
     "allowAnswerShuffle": false,
@@ -6859,7 +6914,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q280",
-    "prompt": "You have an Azure subscription that contains the virtual networks shown in the following\ntable.\n \nThe virtual networks contain the subnets shown in the following table.\nAnswer:",
+    "prompt": "NO.280 You have an Azure subscription that contains the virtual networks shown in the following\ntable.\n \nThe virtual networks contain the subnets shown in the following table.\nAnswer:",
     "image": "",
     "type": "dropdownMatrix",
     "allowAnswerShuffle": false,
@@ -6895,7 +6950,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q281",
-    "prompt": "You have an Azure subscription that contains a virtual network named VNet1 VNet1\ncontains a single subnet.\nThe subscription contains a virtual machine named VM1 that is connected to VNet1.\nYou plan to deploy an Azure SQL managed instance named SQL1.\nYou need to ensure that VM1 can access SQL1.\nWhich three components should you create? Each correct answer presents pan of the solution.\nNOTE: Each correct selection is worth one point.\nA. a virtual network gateway\nB. a network security group (NSG)\nC. a route table\nD. a subnet\nE. a network security perimeter\nIT Certification Guaranteed, The Easy Way!\n249",
+    "prompt": "NO.281 You have an Azure subscription that contains a virtual network named VNet1 VNet1\ncontains a single subnet.\nThe subscription contains a virtual machine named VM1 that is connected to VNet1.\nYou plan to deploy an Azure SQL managed instance named SQL1.\nYou need to ensure that VM1 can access SQL1.\nWhich three components should you create? Each correct answer presents pan of the solution.\nNOTE: Each correct selection is worth one point.\nA. a virtual network gateway\nB. a network security group (NSG)\nC. a route table\nD. a subnet\nE. a network security perimeter\nIT Certification Guaranteed, The Easy Way!\n249",
     "image": "",
     "answers": [
       "a virtual network gateway",
@@ -6912,64 +6967,64 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "allowAnswerShuffle": true
   },
   {
-    "id": "az500-q282",
-    "prompt": "You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) data\nconnector.\nYou are threat hunting suspicious traffic from a specific IP address.\nYou need to annotate an intermediate event stored in the workspace and be able to reference the IP\naddress when navigating through the investigation graph.\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from\nthe list of actions to the answer area and arrange them in the correct order.",
-    "image": "",
-    "type": "dragMatch",
-    "allowAnswerShuffle": false,
-    "leftItems": [
-      {
-        "id": "a1",
-        "label": "Add the query to Favorites."
-      },
-      {
-        "id": "a2",
-        "label": "From the Azure Sentinel workspace, run an Azure Log Analytics query."
-      },
-      {
-        "id": "a3",
-        "label": "In a Jupyter notebook, create a reference to the IP address."
-      },
-      {
-        "id": "a4",
-        "label": "Add a bookmark and assign a tag."
-      },
-      {
-        "id": "a5",
-        "label": "Add a bookmark and map an entity."
-      },
-      {
-        "id": "a6",
-        "label": "From Azure Monitor, run an Azure Log Analytics query."
-      },
-      {
-        "id": "a7",
-        "label": "Select a query result."
-      }
-    ],
-    "rightSlots": [
-      {
-        "id": "s1",
-        "label": "Step 1"
-      },
-      {
-        "id": "s2",
-        "label": "Step 2"
-      },
-      {
-        "id": "s3",
-        "label": "Step 3"
-      }
-    ],
-    "correctMatches": {
-      "s1": "From the Azure Sentinel workspace, run an Azure Log Analytics query.",
-      "s2": "Select a query result.",
-      "s3": "Add a bookmark and map an entity."
+  "id": "az500-q282",
+  "prompt": "NO.282 You have an Azure Sentinel workspace that has an Azure Active Directory (Azure AD) data\nconnector.\nYou are threat hunting suspicious traffic from a specific IP address.\nYou need to annotate an intermediate event stored in the workspace and be able to reference the IP\naddress when navigating through the investigation graph.\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from\nthe list of actions to the answer area and arrange them in the correct order.",
+  "image": "",
+  "type": "dragMatch",
+  "allowAnswerShuffle": true,
+  "items": [
+    {
+      "id": "a1",
+      "label": "Add the query to Favorites."
+    },
+    {
+      "id": "a2",
+      "label": "From the Azure Sentinel workspace, run an Azure Log Analytics query."
+    },
+    {
+      "id": "a3",
+      "label": "In a Jupyter notebook, create a reference to the IP address."
+    },
+    {
+      "id": "a4",
+      "label": "Add a bookmark and assign a tag."
+    },
+    {
+      "id": "a5",
+      "label": "Add a bookmark and map an entity."
+    },
+    {
+      "id": "a6",
+      "label": "From Azure Monitor, run an Azure Log Analytics query."
+    },
+    {
+      "id": "a7",
+      "label": "Select a query result."
     }
-  },
+  ],
+  "targets": [
+    {
+      "id": "step1",
+      "label": "Step 1"
+    },
+    {
+      "id": "step2",
+      "label": "Step 2"
+    },
+    {
+      "id": "step3",
+      "label": "Step 3"
+    }
+  ],
+  "correctByTarget": {
+    "step1": "a6",
+    "step2": "a7",
+    "step3": "a5"
+  }
+},
   {
     "id": "az500-q283",
-    "prompt": "You have an Azure subscription that contains the Azure virtual machines shown in the\nfollowing table.\nYou create an MDM Security Baseline profile named Profile1.\nYou need to identify to which virtual machines Profile1 can be applied.\nWhich virtual machines should you identify?\nA. VM1 only\nB. VM1, VM2, and VM3 only\nC. VM1 and VM3 only\nD. VM1, VM2, VM3, and VM4",
+    "prompt": "NO.283 You have an Azure subscription that contains the Azure virtual machines shown in the\nfollowing table.\nYou create an MDM Security Baseline profile named Profile1.\nYou need to identify to which virtual machines Profile1 can be applied.\nWhich virtual machines should you identify?\nA. VM1 only\nB. VM1, VM2, and VM3 only\nC. VM1 and VM3 only\nD. VM1, VM2, VM3, and VM4",
     "image": "",
     "answers": [
       "VM1 only",
@@ -6982,7 +7037,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q284",
-    "prompt": "You have an Azure subscription that contains an Azure SQL database named SQL1 and an\nAzure key vault named KeyVault1. KeyVault1 stores the keys shown in the following table.\n \nYou reed to configure Transparent Data Encryption (TDE). TDE will use a customer-managed key for\nSQL1?\nA. Key1. Key2 Key3. and Key4\nB. Key1 only\nC. Key2 only\nD. Key1 and key2 only\nE. Key2 and Key3 only",
+    "prompt": "NO.284 You have an Azure subscription that contains an Azure SQL database named SQL1 and an\nAzure key vault named KeyVault1. KeyVault1 stores the keys shown in the following table.\n \nYou reed to configure Transparent Data Encryption (TDE). TDE will use a customer-managed key for\nSQL1?\nA. Key1. Key2 Key3. and Key4\nB. Key1 only\nC. Key2 only\nD. Key1 and key2 only\nE. Key2 and Key3 only",
     "image": "",
     "answers": [
       "Key1. Key2 Key3. and Key4",
@@ -6996,7 +7051,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q285",
-    "prompt": "You have an Azure subscription named Sub1 that contains the resource groups shown in the\nfollowing table.\n \nYou create the Azure Policy definition shown in the following exhibit.\nYou assign the policy to Sub1.\nYou plan to create the resources shown in the following table.\n \nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nNOTE: Each correct selection is worth one point.\nAnswer:",
+    "prompt": "NO.285 You have an Azure subscription named Sub1 that contains the resource groups shown in the\nfollowing table.\n \nYou create the Azure Policy definition shown in the following exhibit.\nYou assign the policy to Sub1.\nYou plan to create the resources shown in the following table.\n \nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nNOTE: Each correct selection is worth one point.\nAnswer:",
     "image": "",
     "type": "dropdownMatrix",
     "allowAnswerShuffle": false,
@@ -7032,7 +7087,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q286",
-    "prompt": "You have an Azure AD tenant that contains the groups shown in the following table.\n \nYou assign licenses to the groups as shown in the following table.\n \nOn May1, you delete Group1. Group2, and Group3.\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nNOTE: Each correct selection is worth one point.\nAnswer:",
+    "prompt": "NO.286 You have an Azure AD tenant that contains the groups shown in the following table.\n \nYou assign licenses to the groups as shown in the following table.\n \nOn May1, you delete Group1. Group2, and Group3.\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nNOTE: Each correct selection is worth one point.\nAnswer:",
     "image": "",
     "type": "dropdownMatrix",
     "allowAnswerShuffle": false,
@@ -7068,7 +7123,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q287",
-    "prompt": "You have an Azure subscription named Subscription1 that contains a resource group named\nRG1 and the users shown in the following table.\nYou perform the following tasks:\n* Assign User1 the Network Contributor role for Subscription1.\n* Assign User2 the Contributor role for RG1.\nTo Subscription1 and RG1, you assign the following policy definition: External accounts with write\npermissions should be removed from your subscription.\nWhat is the Compliance State of the policy assignments?\nA. The Compliance State of both policy assignments is Non-compliant.\nB. The Compliance State of the policy assignment to Subscription1 is Compliant, and the Compliance\nState of the policy assignment to RG1 is Non-compliant.\nC. The Compliance State of the policy assignment to Subscription1 is Non-compliant, and the\nCompliance State of the policy assignment to RG1 is Compliant.\nD. The Compliance State of both policy assignments is Compliant.",
+    "prompt": "NO.287 You have an Azure subscription named Subscription1 that contains a resource group named\nRG1 and the users shown in the following table.\nYou perform the following tasks:\n* Assign User1 the Network Contributor role for Subscription1.\n* Assign User2 the Contributor role for RG1.\nTo Subscription1 and RG1, you assign the following policy definition: External accounts with write\npermissions should be removed from your subscription.\nWhat is the Compliance State of the policy assignments?\nA. The Compliance State of both policy assignments is Non-compliant.\nB. The Compliance State of the policy assignment to Subscription1 is Compliant, and the Compliance\nState of the policy assignment to RG1 is Non-compliant.\nC. The Compliance State of the policy assignment to Subscription1 is Non-compliant, and the\nCompliance State of the policy assignment to RG1 is Compliant.\nD. The Compliance State of both policy assignments is Compliant.",
     "image": "",
     "answers": [
       "The Compliance State of both policy assignments is Non-compliant.",
@@ -7081,7 +7136,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q288",
-    "prompt": "You have an Azure subscription named Sub1 that contains the Azure key vaults shown in the\nfollowing table:\nIn Sub1, you create a virtual machine that has the following configurations:\n* Name: VM1\n* Size: DS2v2\n* Resource group: RG1\n* Region: West Europe\n* Operating system: Windows Server 2022\nYou plan to enable Azure Disk Encryption on VM1.\nIn which key vaults can you store the encryption key for VM1?\nA. Vault1 or Vault3 only\nB. Vault1, Vault2, Vault3, or Vault4\nC. Vault1 only\nD. Vault1 or Vault2 only",
+    "prompt": "NO.288 You have an Azure subscription named Sub1 that contains the Azure key vaults shown in the\nfollowing table:\nIn Sub1, you create a virtual machine that has the following configurations:\n* Name: VM1\n* Size: DS2v2\n* Resource group: RG1\n* Region: West Europe\n* Operating system: Windows Server 2022\nYou plan to enable Azure Disk Encryption on VM1.\nIn which key vaults can you store the encryption key for VM1?\nA. Vault1 or Vault3 only\nB. Vault1, Vault2, Vault3, or Vault4\nC. Vault1 only\nD. Vault1 or Vault2 only",
     "image": "",
     "answers": [
       "Vault1 or Vault3 only",
@@ -7096,7 +7151,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q289",
-    "prompt": "You plan to use Azure Resource Manager templates to perform multiple deployments of\nidentically configured Azure virtual machines. The password for the administrator account of each\ndeployment is stored as a secret in different Azure key vaults.\nYou need to identify a method to dynamically construct a resource ID that will designate the key vault\ncontaining the appropriate secret during each deployment. The name of the key vault and the name\nof the secret will be provided as inline parameters.\nWhat should you use to construct the resource ID?\nA. a key vault access policy\nB. a linked template\nC. a parameters file\nD. an automation account",
+    "prompt": "NO.289 You plan to use Azure Resource Manager templates to perform multiple deployments of\nidentically configured Azure virtual machines. The password for the administrator account of each\ndeployment is stored as a secret in different Azure key vaults.\nYou need to identify a method to dynamically construct a resource ID that will designate the key vault\ncontaining the appropriate secret during each deployment. The name of the key vault and the name\nof the secret will be provided as inline parameters.\nWhat should you use to construct the resource ID?\nA. a key vault access policy\nB. a linked template\nC. a parameters file\nD. an automation account",
     "image": "",
     "answers": [
       "a key vault access policy",
@@ -7111,7 +7166,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q290",
-    "prompt": "You have an Azure subscription that contains the following resources:\n* An Azure key vault\n* An Azure SQL database named Database1\n* Two Azure App Service web apps named AppSrv1 and AppSrv2 that are configured to use system-\nassigned managed identities and access Database1 You need to implement an encryption solution for\nDatabase1 that meets the following requirements:\n* The data in a column named Discount in Database1 must be encrypted so that only AppSrv1 can\ndecrypt the data.\n* AppSrv1 and AppSrv2 must be authorized by using managed identities to obtain cryptographic keys.\nHow should you configure the encryption settings fa Database1 To answer, select the appropriate\noptions in the answer area.\nNOTE: Each correct selection is worth one point",
+    "prompt": "NO.290 You have an Azure subscription that contains the following resources:\n* An Azure key vault\n* An Azure SQL database named Database1\n* Two Azure App Service web apps named AppSrv1 and AppSrv2 that are configured to use system-\nassigned managed identities and access Database1 You need to implement an encryption solution for\nDatabase1 that meets the following requirements:\n* The data in a column named Discount in Database1 must be encrypted so that only AppSrv1 can\ndecrypt the data.\n* AppSrv1 and AppSrv2 must be authorized by using managed identities to obtain cryptographic keys.\nHow should you configure the encryption settings fa Database1 To answer, select the appropriate\noptions in the answer area.\nNOTE: Each correct selection is worth one point",
     "image": "",
     "type": "dropdownMatrix",
     "allowAnswerShuffle": false,
@@ -7152,7 +7207,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q291",
-    "prompt": "You have an Azure subscription named Sub1 that contains an Azure Log Analytics workspace\nnamed LAW1.\nYou have 500 Azure virtual machines that run Windows Server 2016 and are enrolled in LAW1.\nYou plan to add the System Update Assessment solution to LAW1.\nYou need to ensure that System Update Assessment-related logs are uploaded to LAW1 from 100 of\nthe virtual machines only.\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from\nthe list of actions to the answer area and arrange them in the correct order.",
+    "prompt": "NO.291 You have an Azure subscription named Sub1 that contains an Azure Log Analytics workspace\nnamed LAW1.\nYou have 500 Azure virtual machines that run Windows Server 2016 and are enrolled in LAW1.\nYou plan to add the System Update Assessment solution to LAW1.\nYou need to ensure that System Update Assessment-related logs are uploaded to LAW1 from 100 of\nthe virtual machines only.\nWhich three actions should you perform in sequence? To answer, move the appropriate actions from\nthe list of actions to the answer area and arrange them in the correct order.",
     "image": "",
     "type": "dragMatch",
     "allowAnswerShuffle": false,
@@ -7200,7 +7255,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q292",
-    "prompt": "You network contains an on-premises Active Directory domain that syncs to an Azure Active\nDirectory (Azure AD) tenant. The tenant contains the users shown in the following table.\n \nThe tenant contains the groups shown in the following table.\n \nYou configure a multi-factor authentication (MFA) registration policy that and the following settings:\n* Assignments:\n* Include: Group1\n* Exclude Group2\nControls: Require Azure MFA registration\nEnforce Policy: On\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nAnswer:",
+    "prompt": "NO.292 You network contains an on-premises Active Directory domain that syncs to an Azure Active\nDirectory (Azure AD) tenant. The tenant contains the users shown in the following table.\n \nThe tenant contains the groups shown in the following table.\n \nYou configure a multi-factor authentication (MFA) registration policy that and the following settings:\n* Assignments:\n* Include: Group1\n* Exclude Group2\nControls: Require Azure MFA registration\nEnforce Policy: On\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nAnswer:",
     "image": "",
     "type": "dropdownMatrix",
     "allowAnswerShuffle": false,
@@ -7236,7 +7291,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q293",
-    "prompt": "You have an Azure subscription that contains an Azure key vault named Vault1.\nIn Vault1, you create a secret named Secret1.\nAn application developer registers an application in Azure Active Directory (Azure AD).\nYou need to ensure that the application can use Secret1.\nWhat should you do?\nA. In Azure AD, create a role.\nB. In Azure Key Vault, create a key.\nC. In Azure Key Vault, create an access policy.\nD. In Azure AD, enable Azure AD Application Proxy.",
+    "prompt": "NO.293 You have an Azure subscription that contains an Azure key vault named Vault1.\nIn Vault1, you create a secret named Secret1.\nAn application developer registers an application in Azure Active Directory (Azure AD).\nYou need to ensure that the application can use Secret1.\nWhat should you do?\nA. In Azure AD, create a role.\nB. In Azure Key Vault, create a key.\nC. In Azure Key Vault, create an access policy.\nD. In Azure AD, enable Azure AD Application Proxy.",
     "image": "",
     "answers": [
       "In Azure AD, create a role.",
@@ -7251,7 +7306,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q294",
-    "prompt": "You have an Azure subscription.\nYou plan to map an online infrastructure and perform vulnerability scanning for the following:\n* ASNs\n* Hostnames\n* IP addresses\n* SSL certificates\nWhat should you use?\nA. Microsoft Defender for Cloud\nB. Microsoft Defender for Identity\nC. Microsoft Defender for Endpoint\nD. Microsoft Defender External Attack Surface Management (Defender EASM)",
+    "prompt": "NO.294 You have an Azure subscription.\nYou plan to map an online infrastructure and perform vulnerability scanning for the following:\n* ASNs\n* Hostnames\n* IP addresses\n* SSL certificates\nWhat should you use?\nA. Microsoft Defender for Cloud\nB. Microsoft Defender for Identity\nC. Microsoft Defender for Endpoint\nD. Microsoft Defender External Attack Surface Management (Defender EASM)",
     "image": "",
     "answers": [
       "Microsoft Defender for Cloud",
@@ -7264,7 +7319,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q295",
-    "prompt": "You have an Azure subscription that contains a user named User1 and a storage account\nnamed storage 1. The storage1 account contains the resources shown in the following table:\n \nUser1 is assigned the following roles for storage1:\n* Storage Blob Data Reader\n* Storage Table Data Contributor\n* Storage File Data SMB Share Reader\nAnswer:\nNo, Yes, No",
+    "prompt": "NO.295 You have an Azure subscription that contains a user named User1 and a storage account\nnamed storage 1. The storage1 account contains the resources shown in the following table:\n \nUser1 is assigned the following roles for storage1:\n* Storage Blob Data Reader\n* Storage Table Data Contributor\n* Storage File Data SMB Share Reader\nAnswer:\nNo, Yes, No",
     "image": "",
     "type": "dropdownMatrix",
     "allowAnswerShuffle": false,
@@ -7300,7 +7355,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q296",
-    "prompt": "You have an Azure Active Directory (Azure AD) tenant named contoso.com that contains the\nusers shown in the following table.\nYou create and enforce an Azure AD Identity Protection user risk policy that has the following\nsettings:\n* Assignment: Include Group1, Exclude Group2\n* Conditions: Sign-in risk of Medium and above\n* Access: Allow access, Require password change\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nNOTE: Each correct selection is worth one point.",
+    "prompt": "NO.296 You have an Azure Active Directory (Azure AD) tenant named contoso.com that contains the\nusers shown in the following table.\nYou create and enforce an Azure AD Identity Protection user risk policy that has the following\nsettings:\n* Assignment: Include Group1, Exclude Group2\n* Conditions: Sign-in risk of Medium and above\n* Access: Allow access, Require password change\nFor each of the following statements, select Yes if the statement is true. Otherwise, select No.\nNOTE: Each correct selection is worth one point.",
     "image": "",
     "type": "dropdownMatrix",
     "allowAnswerShuffle": false,
@@ -7336,7 +7391,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q297",
-    "prompt": "You have an Azure subscription that uses Microsoft Defender for Cloud.\nDefender for Cloud has the security alerts shown in the following exhibit.",
+    "prompt": "NO.297 You have an Azure subscription that uses Microsoft Defender for Cloud.\nDefender for Cloud has the security alerts shown in the following exhibit.",
     "image": "",
     "type": "inlineDropdown",
     "allowAnswerShuffle": false,
@@ -7385,7 +7440,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q298",
-    "prompt": "You have a management group named MG1 that contains an Azure subscription and a\nresource group named RG1. RG1 contains a virtual machine named VM1. You have the custom Azure\nroles shown in the following table.\n \nThe permissions for Role1 are shown in the following role definition file.\nYou assign the roles to the users shown in the following table.\n \nFor each of the following statements, select Yes if the statement is true. Otherwise, select No NOTE:\nEach correct selection is worth one point.\nAnswer:",
+    "prompt": "NO.298 You have a management group named MG1 that contains an Azure subscription and a\nresource group named RG1. RG1 contains a virtual machine named VM1. You have the custom Azure\nroles shown in the following table.\n \nThe permissions for Role1 are shown in the following role definition file.\nYou assign the roles to the users shown in the following table.\n \nFor each of the following statements, select Yes if the statement is true. Otherwise, select No NOTE:\nEach correct selection is worth one point.\nAnswer:",
     "image": "",
     "type": "dropdownMatrix",
     "allowAnswerShuffle": false,
@@ -7421,7 +7476,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q299",
-    "prompt": "You have an Azure subscription that contains an Azure key vault.\nYou create a storage account named storagel.\nYou plan to store data in the following storagel services:\n* Azure Files\n* Azure Blob storage\n* Azure Table storage\n* Azure Queue storage\nFor which two services can you configure data encryption by using the keys stored in the key vault?\nEach correct answer presents a complete solution.\nNOTE Each correct selection is worth one point.\nA. Azure Files\nB. Table storage\nC. Queue storage\nD. Blob storage",
+    "prompt": "NO.299 You have an Azure subscription that contains an Azure key vault.\nYou create a storage account named storagel.\nYou plan to store data in the following storagel services:\n* Azure Files\n* Azure Blob storage\n* Azure Table storage\n* Azure Queue storage\nFor which two services can you configure data encryption by using the keys stored in the key vault?\nEach correct answer presents a complete solution.\nNOTE Each correct selection is worth one point.\nA. Azure Files\nB. Table storage\nC. Queue storage\nD. Blob storage",
     "image": "",
     "answers": [
       "Azure Files",
@@ -7437,7 +7492,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
   },
   {
     "id": "az500-q300",
-    "prompt": "Note: This question is part of a series of questions that present the same scenario. Each\nquestion in the series contains a unique solution that might meet the stated goals. Some question\nsets might have more than one correct solution, while others might not have a correct solution.\nAfter you answer a question in this section, you will NOT be able to return to it. As a result, these\nquestions will not appear in the review screen.\nYou have an Azure Subscription. The subscription contains 50 virtual machines that run Windows\nServer\n2012 R2 or Windows Server 2016.\nYou need to deploy Microsoft Antimalware to the virtual machines.\nSolution: You add an extension to each virtual machine.\nDoes this meet the goal?\nA. Yes\nB. No",
+    "prompt": "NO.300 Note: This question is part of a series of questions that present the same scenario. Each\nquestion in the series contains a unique solution that might meet the stated goals. Some question\nsets might have more than one correct solution, while others might not have a correct solution.\nAfter you answer a question in this section, you will NOT be able to return to it. As a result, these\nquestions will not appear in the review screen.\nYou have an Azure Subscription. The subscription contains 50 virtual machines that run Windows\nServer\n2012 R2 or Windows Server 2016.\nYou need to deploy Microsoft Antimalware to the virtual machines.\nSolution: You add an extension to each virtual machine.\nDoes this meet the goal?\nA. Yes\nB. No",
     "image": "",
     "answers": [
       "Yes",
@@ -10091,7 +10146,15 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
         "label": "Microsoft.Compute"
       },
       {
+        "id": "it1_2",
+        "label": "Microsoft.Compute"
+      },
+      {
         "id": "it2",
+        "label": "Microsoft.Network"
+      },
+      {
+        "id": "it2_2",
         "label": "Microsoft.Network"
       },
       {
@@ -10099,7 +10162,15 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
         "label": "Microsoft.Security"
       },
       {
+        "id": "it3_2",
+        "label": "Microsoft.Security"
+      },
+      {
         "id": "it4",
+        "label": "Microsoft.Solutions"
+      },
+      {
+        "id": "it4_2",
         "label": "Microsoft.Solutions"
       }
     ],
@@ -10115,7 +10186,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     ],
     "correctByTarget": {
       "role1": "it2",
-      "role2": "it2"
+      "role2": "it2_2"
     }
   },
   {
@@ -11565,11 +11636,23 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
         "label": "Low"
       },
       {
+        "id": "low_2",
+        "label": "Low"
+      },
+      {
         "id": "medium",
         "label": "Medium"
       },
       {
+        "id": "medium_2",
+        "label": "Medium"
+      },
+      {
         "id": "high",
+        "label": "High"
+      },
+      {
+        "id": "high_2",
         "label": "High"
       }
     ],
@@ -11590,7 +11673,7 @@ window.__QUESTION_BANK_FILES__["AZ-500"] = [
     "correctByTarget": {
       "leaked": "high",
       "travel": "medium",
-      "ip": "medium"
+      "ip": "medium_2"
     }
   },
   {
